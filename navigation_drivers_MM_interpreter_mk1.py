@@ -23,6 +23,9 @@ class hedge_Positions:	#This class contains the data on the hedgehog positions, 
 		self.Position_minus1 = self.Position_now
 		self.Position_now[0] = hedge.position()[1]
 		self.Position_now[1] = hedge.position()[2]
+		
+		self.Movement_needed[0] = self.Target_coord[0] - self.Position_now[0]
+		self.Movement_needed[1] = self.Target_coord[1] - self.Position_now[1]
 
 class Impassable_zone: #This class defines a zone on the map which our system is unable to pass through, such as a table or a wall. 
 		       #It uses the x/y coordinates to define this zone, but therefore can only accept rectangles. 
