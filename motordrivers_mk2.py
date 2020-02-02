@@ -7,7 +7,7 @@ IO.setmode(IO.BCM)
 class Motor: #This lass defines the motor direction pins and their assumed position on the robot. 
 	def __init__(self, PIN_1, PIN_2):
 		
-		self.Left = False
+		self.left = False
 		self.right = False
 		self.front = False
 		self.back = False
@@ -36,7 +36,7 @@ IO.setup(13,IO.OUT) #left side
 Motor1 = Motor(17, 27)
 
 #Motor 2 pins (assumed back right)
-Motor2 - Motor(22,23)
+Motor2 = Motor(22,23)
 
 #Motor 3 pins (assumed front left)
 Motor3 = Motor(24,25)
