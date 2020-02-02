@@ -4,25 +4,35 @@ import time
 IO.setwarnings(False)
 IO.setmode(IO.BCM)
 
+class Motor: #This lass defines the motor direction pins and their assumed position on the robot. 
+	def __init__(self, PIN_1, PIN_2):
+		
+		self.Left = False
+		self.right = False
+		self.front = False
+		self.back = False
+		
+		self.forward_pin = PIN_1
+		self.backward_pin = PIN_2
+		
+		IO.setup(PIN_1,IO.OUT)
+		IO.setup(PIN_2,IO.OUT)
+
 #PWM manager pins
 IO.setup(18,IO.OUT) #right side
 IO.setup(13,IO.OUT) #left side
 
 #Motor 1 pins (front right)
-IO.setup(17,IO.OUT) #forward
-IO.setup(27,IO.OUT) #backward
+Motor1 = Motor(17, 27)
 
 #Motor 2 pins (back right)
-IO.setup(22,IO.OUT) #forward
-IO.setup(23,IO.OUT) #backward
+Motor2 - Motor(22,23)
 
 #Motor 3 pins (front left)
-IO.setup(24,IO.OUT) #forward
-IO.setup(25,IO.OUT) #backward
+Motor3 = Motor(24,25)
 
 #Motor 4 pins (back left
-IO.setup(5,IO.OUT) #forward
-IO.setup(6,IO.OUT) #backward
+Motor4 = Motor(5,6)
 
 #PWM wave setup
 PWM_a = IO.PWM(18, 100)
