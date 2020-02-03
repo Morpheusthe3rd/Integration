@@ -51,7 +51,22 @@ def main():
                                 
                                 elif (My_hedge.movement_needed[0] <0.1) AND (My_hedge.movement[0] > -0.1):
                                         #move ahead
-                                
+                                        if My_hedge.movement_needed[1] > 0.1:
+                                                #Set direction for forward movement
+                                                Motor1.set_direction(0)
+                                                Motor2.set_direction(0)
+                                                Motor3.set_direction(0)
+                                                Motor4.set_direction(0)
+                                        elif (My_hedge.movement_needed[1] < 0.1) AND (My_hedge.movement_needed[1] > -0.1):
+                                                #At position
+                                                print('Destination acheived')
+                                        else:
+                                                #Set direction for backwards movement
+                                                Motor1.set_direction(1)
+                                                Motor2.set_direction(1)
+                                                Motor3.set_direction(1)
+                                                Motor4.set_direction(1)
+                                        
                                 else:
                                         #Set direction for right movement
                                         Motor1.set_direction(1)
