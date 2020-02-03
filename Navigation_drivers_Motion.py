@@ -3,6 +3,7 @@ import navigation_drivers_MM_interpreter_mk1
 import motordrivers_mk2
 import marvelmind
 import sys
+import Fundamentals
 
 #This file plans to take the input from the Marvelmind beacons and the interpreter, and act on the movement recommendations from that
 #interpreter. 
@@ -41,14 +42,22 @@ def main():
                         try:
                                 My_hedge.update_position()
                                 
-                                if My_hedge.movement_needed[0] > 0:
-                                        #move left
+                                if My_hedge.movement_needed[0] > 0.1:
+                                        #Set direction for left movement
+                                        Motor1.set_direction(0)
+                                        Motor2.set_direction(1)
+                                        Motor3.set_direction(1)
+                                        Motor4.set_direction(0)
                                 
-                                elif My_hedge.movement_needed[0] == 0:
+                                elif (My_hedge.movement_needed[0] <0.1) AND (My_hedge.movement[0] > -0.1):
                                         #move ahead
                                 
                                 else:
-                                        #move right
+                                        #Set direction for right movement
+                                        Motor1.set_direction(1)
+                                        Motor2.set_direction(0)
+                                        Motor3.set_direction(0)
+                                        Motor4.set_direction(1)
                         
                         except KeyboardInterrupt:
                                 hedge.stop()
