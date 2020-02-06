@@ -43,6 +43,10 @@ def main():
         Back_dir_flag = False
         Front_dir_flag = False
         
+        #PWM wave setup
+        PWM_a = PWM(18,100)
+        PWM_b = PWM(13,100)
+        
         try:
                 while True:
                         try:
@@ -50,9 +54,10 @@ def main():
                                 #IF direction 
                                 if My_hedge.movement_needed[0] > 0.1:
                                         if Left_dir_flag == False:
+                                                
                                                 #all decelerate
-                                                Motor1.Accelerate(0, 0.05)
-                                                Motor2.Accelerate(0, 0.05)
+                                                PMW_a.Accelerate(0, 0.05, -1)
+                                                PWM_b.Accelerate(0, 0.05, -1)
                                                                                                
                                                 #Set direction for left movement
                                                 Motor1.set_direction(0)
@@ -61,41 +66,66 @@ def main():
                                                 Motor4.set_direction(0)
                                                 
                                                 #all accelerate
-                                
+                                                PMW_a.Accelerate(50, 0.05, 1)
+                                                PWM_b.Accelerate(50, 0.05, 1)
+                                                
                                 elif (My_hedge.movement_needed[0] <0.1) AND (My_hedge.movement[0] > -0.1):
                                         #move ahead
                                         if My_hedge.movement_needed[1] > 0.1:
                                                 if Front_dir_flag == False:
+                                                        
                                                         #all decelerate
+                                                        PMW_a.Accelerate(0, 0.05, -1)
+                                                        PWM_b.Accelerate(0, 0.05, -1)
+                                                        
                                                         #Set direction for forward movement
                                                         Motor1.set_direction(0)
                                                         Motor2.set_direction(0)
                                                         Motor3.set_direction(0)
                                                         Motor4.set_direction(0)
+                                                        
                                                         #all accelerate
+                                                        PMW_a.Accelerate(50, 0.05, 1)
+                                                        PWM_b.Accelerate(50, 0.05, 1)
+                                                        
                                         elif (My_hedge.movement_needed[1] < 0.1) AND (My_hedge.movement_needed[1] > -0.1):
                                                 #At position
                                                 print('Destination acheived')
                                                 #all decelerate
                                         else:
-                                                if Back_dir_flag == False
+                                                if Back_dir_flag == False:
+                                                        
                                                         #all decelerate
+                                                        PMW_a.Accelerate(0, 0.05, -1)
+                                                        PWM_b.Accelerate(0, 0.05, -1)
+                                                        
                                                         #Set direction for backwards movement
                                                         Motor1.set_direction(1)
                                                         Motor2.set_direction(1)
                                                         Motor3.set_direction(1)
                                                         Motor4.set_direction(1)
+                                                        
                                                         #all accelerate
+                                                        PMW_a.Accelerate(50, 0.05, 1)
+                                                        PWM_b.Accelerate(50, 0.05, 1)
+                                                        
                                 else:
-                                        if Right_dir_flag == False
+                                        if Right_dir_flag == False:
+                                                
                                                 #all decelerate
+                                                PMW_a.Accelerate(0, 0.05, -1)
+                                                PWM_b.Accelerate(0, 0.05, -1)
+                                                
                                                 #Set direction for right movement
                                                 Motor1.set_direction(1)
                                                 Motor2.set_direction(0)
                                                 Motor3.set_direction(0)
                                                 Motor4.set_direction(1)
+                                                
                                                 #all accelerate
-                                
+                                                PMW_a.Accelerate(50, 0.05, 1)
+                                                PWM_b.Accelerate(50, 0.05, 1)
+                                                        
                                 time.sleep(1)
                                 
                         except KeyboardInterrupt:
