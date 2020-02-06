@@ -74,7 +74,7 @@ def main():
                                         PWM_a.Accelerate(50, 0.05, 1)
                                         PWM_b.Accelerate(50, 0.05, 1)
                                                 
-                         elif (My_hedge.Movement_needed[0] <0.1) and (My_hedge.Movement[0] > -0.1):
+                         elif (My_hedge.Movement_needed[0] <0.1) and (My_hedge.Movement_needed[0] > -0.1):
                                 #move ahead
                                 if My_hedge.Movement_needed[1] > 0.1:
                                         if Front_dir_flag == False:
