@@ -16,8 +16,8 @@ class hedge_Positions:	#This class contains the data on the hedgehog positions, 
 		self.Position_minus1 = [0, 0]
 		self.Position_minus2 = [0, 0]
 		self.Target_coord = [0, 0]
-		My_hedge.Target_coord[0] = input('Please enter target location X coord.: ')
-		My_hedge.Target_coord[1] = input('Please enter target location Y coord.: ')
+		self.Target_coord[0] = input('Please enter target location X coord.: ')
+		self.Target_coord[1] = input('Please enter target location Y coord.: ')
 		print ('Target: ',My_hedge.Target_coord)
 		self.Movement_needed = [0, 0]
 		
