@@ -1,7 +1,7 @@
 import time
 import navigation_drivers_MM_interpreter_mk1
 import motordrivers_mk2
-import marvelmind
+from marvelmind import MarvelmindHedge
 import sys
 import Fundamentals
 
