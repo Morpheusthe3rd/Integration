@@ -56,7 +56,7 @@ def main():
                                         if Left_dir_flag == False:
                                                 
                                                 #all decelerate
-                                                PMW_a.Accelerate(0, 0.05, -1)
+                                                PWM_a.Accelerate(0, 0.05, -1)
                                                 PWM_b.Accelerate(0, 0.05, -1)
                                                                                                
                                                 #Set direction for left movement
@@ -67,7 +67,7 @@ def main():
                                                 Left_dir_flag = True
                                                 
                                                 #all accelerate
-                                                PMW_a.Accelerate(50, 0.05, 1)
+                                                PWM_a.Accelerate(50, 0.05, 1)
                                                 PWM_b.Accelerate(50, 0.05, 1)
                                                 
                                 elif (My_hedge.Movement_needed[0] <0.1) and (My_hedge.Movement[0] > -0.1):
@@ -76,7 +76,7 @@ def main():
                                                 if Front_dir_flag == False:
                                                         
                                                         #all decelerate
-                                                        PMW_a.Accelerate(0, 0.05, -1)
+                                                        PWM_a.Accelerate(0, 0.05, -1)
                                                         PWM_b.Accelerate(0, 0.05, -1)
                                                         
                                                         #Set direction for forward movement
@@ -87,7 +87,7 @@ def main():
                                                         Front_dir_flag = True
                                                         
                                                         #all accelerate
-                                                        PMW_a.Accelerate(50, 0.05, 1)
+                                                        PWM_a.Accelerate(50, 0.05, 1)
                                                         PWM_b.Accelerate(50, 0.05, 1)
                                                         
                                         elif (My_hedge.Movement_needed[1] < 0.1) and (My_hedge.Movement_needed[1] > -0.1):
@@ -98,7 +98,7 @@ def main():
                                                 if Back_dir_flag == False:
                                                         
                                                         #all decelerate
-                                                        PMW_a.Accelerate(0, 0.05, -1)
+                                                        PWM_a.Accelerate(0, 0.05, -1)
                                                         PWM_b.Accelerate(0, 0.05, -1)
                                                         
                                                         #Set direction for backwards movement
@@ -109,14 +109,14 @@ def main():
                                                         Back_dir_flag = True
                                                         
                                                         #all accelerate
-                                                        PMW_a.Accelerate(50, 0.05, 1)
+                                                        PWM_a.Accelerate(50, 0.05, 1)
                                                         PWM_b.Accelerate(50, 0.05, 1)
                                                         
                                 else:
                                         if Right_dir_flag == False:
                                                 
                                                 #all decelerate
-                                                PMW_a.Accelerate(0, 0.05, -1)
+                                                PWM_a.Accelerate(0, 0.05, -1)
                                                 PWM_b.Accelerate(0, 0.05, -1)
                                                 
                                                 #Set direction for right movement
@@ -127,7 +127,7 @@ def main():
                                                 Right_dir_flag = True
                                                 
                                                 #all accelerate
-                                                PMW_a.Accelerate(50, 0.05, 1)
+                                                PWM_a.Accelerate(50, 0.05, 1)
                                                 PWM_b.Accelerate(50, 0.05, 1)
                                                         
                                 time.sleep(1)
