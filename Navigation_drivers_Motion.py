@@ -9,8 +9,6 @@ import Fundamentals
 #This file plans to take the input from the Marvelmind beacons and the interpreter, and act on the movement recommendations from that
 #interpreter. 
 
-
-
 #Assume that the robot is properly oriented
 
 def main():
