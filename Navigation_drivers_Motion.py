@@ -51,7 +51,9 @@ def main():
                 while True:
                         try:
                                 My_hedge.update_position()
-                                #IF direction 
+                                
+                                print(My_hedge.Movement_needed)
+                                
                                 if My_hedge.Movement_needed[0] > 0.1:
                                         if Left_dir_flag == False:
                                                 
@@ -93,6 +95,8 @@ def main():
                                         elif (My_hedge.Movement_needed[1] < 0.1) and (My_hedge.Movement_needed[1] > -0.1):
                                                 #At position
                                                 print('Destination acheived')
+                                                hedge.stop()
+                                                sys.exit()
                                                 #all decelerate
                                         else:
                                                 if Back_dir_flag == False:
