@@ -7,7 +7,7 @@ import sys
 #that into a movement recommendation. Actuall implementation of the recommendations will
 #be executed by a seperate driver
 
-global hedge = MarvelmindHedge(tty = "/dev/ttyACM0",adr=9, debug=False)
+hedge = MarvelmindHedge(tty = "/dev/ttyACM0",adr=9, debug=False)
 hedge.start()
 
 class hedge_Positions:	#This class contains the data on the hedgehog positions, and the method to update them.
