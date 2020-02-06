@@ -37,7 +37,7 @@ class PWM: #This class defines the data and functions surrounding the PWM contro
 		IO.setup(PIN_1, IO.OUT)
 		self.PWM = IO.PWM(PIN_1, Frequency) #This section may not work as intended, look here first for errors.
 		
-	def Accelerate(final_duty_cycle, interval, direction):
+	def Accelerate(self, final_duty_cycle, interval, direction):
 	#The acceleration function handles both increases and decreases in duty cycle. This is possible through the range function, 
 	#which allows the direction of the range to be set: 1 for upwards, -1 for reverse. The function iterates from the current
 	#duty cycle to the final duty cycle, in the specified direction. It then sets the new current duty cycle to the desired one.
