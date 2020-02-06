@@ -17,6 +17,13 @@ My_hedge = hedge_positions()
 
 def main():
         
+        #PWM manager pins
+        IO.setup(18,IO.OUT) #right side
+        IO.setup(13,IO.OUT) #left side
+        #PWM wave setup
+        PWM_a = IO.PWM(18, 100)
+        PWM_b = IO.PWM(13, 100)
+        
         #Motor 1 pins (assumed front right)
         Motor1 = Motor(17, 27)
         Motor1.front = True
