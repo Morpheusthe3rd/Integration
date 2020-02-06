@@ -173,5 +173,4 @@ def main():
 	All_stop()
 	print('End operation 5.')
 
-main()
-	
+
