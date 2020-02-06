@@ -1,6 +1,7 @@
 import time
-import navigation_drivers_MM_interpreter_mk1
-import motordrivers_mk2
+from navigation_drivers_MM_interpreter_mk1 import herge_Positions
+from motordrivers_mk2 import Motor
+from motordrivers_mk2 import PWM
 from marvelmind import MarvelmindHedge
 import sys
 import Fundamentals
