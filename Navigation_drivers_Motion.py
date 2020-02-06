@@ -60,7 +60,9 @@ def main():
                                                 #all decelerate
                                                 PWM_a.Accelerate(0, 0.05, -1)
                                                 PWM_b.Accelerate(0, 0.05, -1)
-                                                                                               
+                                                
+                                                print('Moving Left')
+                                               
                                                 #Set direction for left movement
                                                 Motor1.set_direction(0)
                                                 Motor2.set_direction(1)
@@ -80,6 +82,8 @@ def main():
                                                         #all decelerate
                                                         PWM_a.Accelerate(0, 0.05, -1)
                                                         PWM_b.Accelerate(0, 0.05, -1)
+                                                        
+                                                        print('Moving forward')
                                                         
                                                         #Set direction for forward movement
                                                         Motor1.set_direction(0)
@@ -105,6 +109,8 @@ def main():
                                                         PWM_a.Accelerate(0, 0.05, -1)
                                                         PWM_b.Accelerate(0, 0.05, -1)
                                                         
+                                                        print('Moving backwards')
+                                                        
                                                         #Set direction for backwards movement
                                                         Motor1.set_direction(1)
                                                         Motor2.set_direction(1)
@@ -122,6 +128,8 @@ def main():
                                                 #all decelerate
                                                 PWM_a.Accelerate(0, 0.05, -1)
                                                 PWM_b.Accelerate(0, 0.05, -1)
+                                                
+                                                print('Moving right')
                                                 
                                                 #Set direction for right movement
                                                 Motor1.set_direction(1)
