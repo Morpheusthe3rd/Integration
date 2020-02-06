@@ -49,9 +49,11 @@ def main():
                                 My_hedge.update_position()
                                 #IF direction 
                                 if My_hedge.movement_needed[0] > 0.1:
-                                        if Left_dir_flag == False
+                                        if Left_dir_flag == False:
                                                 #all decelerate
-                                        
+                                                Motor1.Accelerate(0, 0.05)
+                                                Motor2.Accelerate(0, 0.05)
+                                                                                               
                                                 #Set direction for left movement
                                                 Motor1.set_direction(0)
                                                 Motor2.set_direction(1)
@@ -63,7 +65,7 @@ def main():
                                 elif (My_hedge.movement_needed[0] <0.1) AND (My_hedge.movement[0] > -0.1):
                                         #move ahead
                                         if My_hedge.movement_needed[1] > 0.1:
-                                                if Front_dir_flag == False
+                                                if Front_dir_flag == False:
                                                         #all decelerate
                                                         #Set direction for forward movement
                                                         Motor1.set_direction(0)
