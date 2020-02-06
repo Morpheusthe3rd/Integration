@@ -47,20 +47,20 @@ class PWM: #This class defines the data and functions surrounding the PWM contro
 		self.Current_duty_cycle = final_duty_cycle
 
 #Motor 1 pins (assumed front right)
-Motor1 = Motor(17, 27)
+#Motor1 = Motor(17, 27)
 
 #Motor 2 pins (assumed back right)
-Motor2 = Motor(22,23)
+#Motor2 = Motor(22,23)
 
 #Motor 3 pins (assumed front left)
-Motor3 = Motor(24,25)
+#Motor3 = Motor(24,25)
 
 #Motor 4 pins (assumed back left)
-Motor4 = Motor(5,6)
+#Motor4 = Motor(5,6)
 
 #PWM wave setup
-PWM_a = PWM(18,100)
-PWM_b = PWM(13,100)
+#PWM_a = PWM(18,100)
+#PWM_b = PWM(13,100)
 
 #PWM test-
 #This function allows testing of a single PWM. The signal should
