@@ -1,5 +1,5 @@
 import time
-from navigation_drivers_MM_interpreter_mk1 import herge_Positions
+from navigation_drivers_MM_interpreter_mk1 import hedge_Positions
 from motordrivers_mk2 import Motor
 from motordrivers_mk2 import PWM
 from marvelmind import MarvelmindHedge
