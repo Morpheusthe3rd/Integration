@@ -52,7 +52,7 @@ def main():
                         try:
                                 My_hedge.update_position()
                                 #IF direction 
-                                if My_hedge.movement_needed[0] > 0.1:
+                                if My_hedge.Movement_needed[0] > 0.1:
                                         if Left_dir_flag == False:
                                                 
                                                 #all decelerate
@@ -70,9 +70,9 @@ def main():
                                                 PMW_a.Accelerate(50, 0.05, 1)
                                                 PWM_b.Accelerate(50, 0.05, 1)
                                                 
-                                elif (My_hedge.movement_needed[0] <0.1) and (My_hedge.movement[0] > -0.1):
+                                elif (My_hedge.Movement_needed[0] <0.1) and (My_hedge.Movement[0] > -0.1):
                                         #move ahead
-                                        if My_hedge.movement_needed[1] > 0.1:
+                                        if My_hedge.Movement_needed[1] > 0.1:
                                                 if Front_dir_flag == False:
                                                         
                                                         #all decelerate
@@ -90,7 +90,7 @@ def main():
                                                         PMW_a.Accelerate(50, 0.05, 1)
                                                         PWM_b.Accelerate(50, 0.05, 1)
                                                         
-                                        elif (My_hedge.movement_needed[1] < 0.1) and (My_hedge.movement_needed[1] > -0.1):
+                                        elif (My_hedge.Movement_needed[1] < 0.1) and (My_hedge.Movement_needed[1] > -0.1):
                                                 #At position
                                                 print('Destination acheived')
                                                 #all decelerate
