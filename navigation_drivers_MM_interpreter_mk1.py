@@ -78,4 +78,4 @@ def main():
 		except KeyboardInterrupt:
 			hedge.stop()
 			sys.exit()
-main()
+
