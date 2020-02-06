@@ -54,7 +54,7 @@ def main():
 	#global hedge
 	#print_all() #attempt to print all
 
-	My_hedge = hedge_positions()
+	My_hedge = hedge_Positions()
 	
 	print('Welcome to navigation_drivers_MM_interpreter_mk.1!.')
 	My_hedge.Target_coord[0] = input('Please enter target location X coord.: ')
