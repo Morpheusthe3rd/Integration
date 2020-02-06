@@ -8,14 +8,15 @@ import Fundamentals
 #This file plans to take the input from the Marvelmind beacons and the interpreter, and act on the movement recommendations from that
 #interpreter. 
 
-hedge = MarvelmindHedge(tty = "/dev/ttyACM0",adr=9, debug=False)
-hedge.start()
 
-My_hedge = hedge_positions()
 
 #Assume that the robot is properly oriented
 
 def main():
+        
+        hedge = MarvelmindHedge(tty = "/dev/ttyACM0",adr=9, debug=False)
+        hedge.start()
+        My_hedge = hedge_positions()
         
         #Motor 1 pins (assumed front right)
         Motor1 = Motor(17, 27)
