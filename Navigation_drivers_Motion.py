@@ -64,6 +64,7 @@ def main():
                                                 Motor2.set_direction(1)
                                                 Motor3.set_direction(1)
                                                 Motor4.set_direction(0)
+                                                Left_dir_flag = True
                                                 
                                                 #all accelerate
                                                 PMW_a.Accelerate(50, 0.05, 1)
@@ -83,6 +84,7 @@ def main():
                                                         Motor2.set_direction(0)
                                                         Motor3.set_direction(0)
                                                         Motor4.set_direction(0)
+                                                        Front_dir_flag = True
                                                         
                                                         #all accelerate
                                                         PMW_a.Accelerate(50, 0.05, 1)
@@ -104,6 +106,7 @@ def main():
                                                         Motor2.set_direction(1)
                                                         Motor3.set_direction(1)
                                                         Motor4.set_direction(1)
+                                                        Back_dir_flag = True
                                                         
                                                         #all accelerate
                                                         PMW_a.Accelerate(50, 0.05, 1)
@@ -121,6 +124,7 @@ def main():
                                                 Motor2.set_direction(0)
                                                 Motor3.set_direction(0)
                                                 Motor4.set_direction(1)
+                                                Right_dir_flag = True
                                                 
                                                 #all accelerate
                                                 PMW_a.Accelerate(50, 0.05, 1)
