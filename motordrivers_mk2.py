@@ -4,7 +4,7 @@ import time
 IO.setwarnings(False)
 IO.setmode(IO.BCM)
 
-class Motor: #This lass defines the motor direction pins and their assumed position on the robot. 
+class Motor: #This class defines the motor direction pins and their assumed position on the robot. 
 	def __init__(self, PIN_1, PIN_2):
 		
 		self.left = False
@@ -27,10 +27,24 @@ class Motor: #This lass defines the motor direction pins and their assumed posit
 			IO.output(self.backward_pin, IO.HIGH)
 		else: 
 			print("Exception. Unexpected 'decision_bit' value.")
-
-#PWM manager pins
-IO.setup(18,IO.OUT) #right side
-IO.setup(13,IO.OUT) #left side
+class PWM: #This class defines the data and functions surrounding the PWM controls
+	def __init__(self, PIN_1, Frequency):
+		
+		self.output_Pin = PIN_1
+		self.Frequency = Frequency
+		self.Current_duty_cycle = 0
+		
+		IO.setup(PIN_1, IO.OUT)
+		self.PWM = IO.PWM(PIN_1, Frequency) #This section may not work as intended, look here first for errors.
+		
+	def Accelerate(final_duty_cycle, interval, direction):
+	#The acceleration function handles both increases and decreases in duty cycle. This is possible through the range function, 
+	#which allows the direction of the range to be set: 1 for upwards, -1 for reverse. The function iterates from the current
+	#duty cycle to the final duty cycle, in the specified direction. It then sets the new current duty cycle to the desired one.
+		for i in range (self.Current_duty_cycle, final_duty_cycle, direction):
+			self.PWM.ChangeDutyCycle(i)
+			time.sleep(interval)
+		self.Current_duty_cycle = final_duty_cycle
 
 #Motor 1 pins (assumed front right)
 Motor1 = Motor(17, 27)
@@ -45,8 +59,8 @@ Motor3 = Motor(24,25)
 Motor4 = Motor(5,6)
 
 #PWM wave setup
-PWM_a = IO.PWM(18, 100)
-PWM_b = IO.PWM(13, 100)
+PWM_a = PWM(18,100)
+PWM_b = PWM(13,100)
 
 #PWM test-
 #This function allows testing of a single PWM. The signal should
@@ -55,85 +69,10 @@ PWM_b = IO.PWM(13, 100)
 def PWM_a_test():
 
 	print('Start PWM_a test')
-	PWM_a.start(0) #Starts PWM_a with a 0% duty cycle
-	for x in range(100): #Duty cycle increases by 1% every hundredth
-			     #of a second
-		PWM_a.ChangeDutyCycle(x)
-		time.sleep(0.05)
-	for x in range(100):
-		PWM_a.ChangeDutyCycle(100-x)
-		time.sleep(0.05)
+	PWM_a.PWM.start(0) #Starts PWM_a with a 0% duty cycle
+	PWM_a.Accelerate(100, 0.01, 1)
+	PWM_a.Accelerate(0, 0.01, -1)
 	print('End PWM_a test')
-
-#Motor control setup-
-#These functions are the building blocks of the robot's motion. They are
-#divided into acceleration, decelleration, and direction sections.
-
-
-#This function causes both PWM's to accelerate. The 'X' input defines the
-#wait period between interations, and 'Y' defines max PWM duty cycle
-def Motor_control_accelerate_all(X,Y):
-
-
-	PWM_a.start(0)
-	PWM_b.start(0)
-
-	for i in range(Y):
-		PWM_a.ChangeDutyCycle(i)
-		PWM_b.ChangeDutyCycle(i)
-		time.sleep(X)
-
-
-#This function causes both PWM's to decelerate. The 'X' input defines the
-#wait period between interations, and 'Y' defines max PWM duty cycle
-def Motor_control_decelerate_all(X,Y):
-
-	
-        PWM_a.start(0)
-        PWM_b.start(0)
-
-        for i in range(Y):
-                PWM_a.ChangeDutyCycle(100-i)
-                PWM_b.ChangeDutyCycle(100-i)
-                time.sleep(X)
-	
-
-#This function causes PWM_a to accelerate. The 'X' input defines the 
-#wait period between interations, and 'Y' defines max PWM duty cycle
-def Motor_control_accelerate_a(X,Y):
-
-	
-        PWM_a.start(0)
-        for i in range(Y):
-                PWM_a.ChangeDutyCycle(i)
-                time.sleep(X)
-	
-#This function causes PWM_a to decelerate. The 'X' input defines the 
-#wait period between interations, and 'Y' defines max PWM duty cycle
-def Motor_control_decelerate_a(X,Y):
-        PWM_a.start(0)
-
-        for i in range(Y):
-                PWM_a.ChangeDutyCycle(100-i)
-                time.sleep(X)
-
-#This function causes PWM_b to accelerate. The 'X' input defines the 
-#wait period between interations, and 'Y' defines max PWM duty cycle
-def Motor_control_accelerate_b(X,Y):
-        PWM_b.start(0)
-
-        for i in range(Y):
-                PWM_b.ChangeDutyCycle(i)
-                time.sleep(X)
-
-#This function causes PWM_b to decelerate. The 'X' input defines the 
-#wait period between interations, and 'Y' defines max PWM duty cycle
-def Motor_control_decelerate_b(X,Y):
-        PWM_b.start(0)
-
-        for i in range(Y):
-                PWM_b.ChangeDutyCycle(100-i)
-                time.sleep(X)
 
 #This function should be appended to the end of all programs operating motors
 #It sets all of the motor direction controls to stationary
@@ -168,9 +107,15 @@ def main():
 	Motor3.set_direction(0)
 	Motor4.set_direction(0)
 
-	Motor_control_accelerate_all(0.05,100)
+	PMW_a.Accelerate(100, 0.01, 1)
+	PWM_b.Accelerate(100, 0.01, 1)
+	
 	time.sleep(2)
-	Motor_control_decelerate_all(0.05,100)
+	
+	PMW_a.Accelerate(100, 0.01, -1)
+	PWM_b.Accelerate(100, 0.01, -1)
+	
+	
 	print('End operation 1.')
 
 	#Operation 2: all motors backwards, accelerate, 1 sec pause, decelerate
@@ -180,9 +125,13 @@ def main():
         Motor3.set_direction(1)
         Motor4.set_direction(1)
 
-        Motor_control_accelerate_all(0.05,100)
-        time.sleep(2)
-        Motor_control_decelerate_all(0.05,100)
+	PMW_a.Accelerate(100, 0.01, 1)
+	PWM_b.Accelerate(100, 0.01, 1)
+	
+	time.sleep(2)
+	
+	PMW_a.Accelerate(100, 0.01, -1)
+	PWM_b.Accelerate(100, 0.01, -1)
 	print('End operation 2.')
 
 	#Operation 3: Tank turn. Left forward, right back, accelerate, 1 sec pause,
@@ -193,10 +142,15 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(0)
 
-        Motor_control_accelerate_all(0.05,100)
-        time.sleep(2)
-        Motor_control_decelerate_all(0.05,100)
+	PMW_a.Accelerate(100, 0.01, 1)
+	PWM_b.Accelerate(100, 0.01, 1)
+	
+	time.sleep(2)
+	
+	PMW_a.Accelerate(100, 0.01, -1)
+	PWM_b.Accelerate(100, 0.01, -1)
 	print('End operation 3.')
+	
 	#Operation 4: Crab. Front backwards, back forwards, accelerate, 1 sec pause,
 	#decelerate
 	print('Start operation 4, front backwards, back frontwards, accelerate, pause, decelerate')
@@ -205,9 +159,13 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(1)
 
-        Motor_control_accelerate_all(0.05,100)
-        time.sleep(2)
-        Motor_control_decelerate_all(0.05,100)
+	PMW_a.Accelerate(100, 0.01, 1)
+	PWM_b.Accelerate(100, 0.01, 1)
+	
+	time.sleep(2)
+	
+	PMW_a.Accelerate(100, 0.01, -1)
+	PWM_b.Accelerate(100, 0.01, -1)
 	print('End operation 4.')
 
 	#Operation 5: All motors stop
