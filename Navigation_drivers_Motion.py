@@ -57,7 +57,7 @@ def main():
                         print(My_hedge.Movement_needed)
                                 
                         if My_hedge.Movement_needed[0] > 0.1:
-                                 print('Moving Left')
+                                print('Moving Left')
                                 if Left_dir_flag == False:
                                                 
                                         #all decelerate
