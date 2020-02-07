@@ -67,10 +67,9 @@ def main():
 	while True:
 		try:
 			My_hedge.update_position()
-			My_hedge.Movement_needed[0] = My_hedge.Target_coord[0] - My_hedge.Position_now[1]
-			My_hedge.Movement_needed[1] = My_hedge.Target_coord[1] - My_hedge.Position_now[1]
 
-			
+			#My_hedge.Movement_needed[0] = My_hedge.Target_coord[0] - My_hedge.Position_now[1]
+			#My_hedge.Movement_needed[1] = My_hedge.Target_coord[1] - My_hedge.Position_now[1]
 
 			print('Movement needed: x=%.3f, y=%.3f' % (My_hedge.Movement_needed[0],My_hedge.Movement_needed[1]))
 			time.sleep(1)
