@@ -149,8 +149,9 @@ def main():
                         hedge.stop()
                         sys.exit()
         print('Now outside of While loop')
-
-                
+        hedge.stop()
+        sys.exit()
+                        
 main()
 
 
