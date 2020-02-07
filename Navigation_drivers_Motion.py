@@ -148,8 +148,8 @@ def main():
                                 
                 except KeyboardInterrupt:
                         break
-                        hedge.stop()
-                        sys.exit()
+                        #hedge.stop()
+                        #sys.exit()
         print('Now outside of While loop')
         hedge.stop()
         sys.exit()
