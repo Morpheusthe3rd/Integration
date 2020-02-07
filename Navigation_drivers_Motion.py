@@ -50,19 +50,20 @@ def main():
         
         while True:
                 try:
+                        
                         My_hedge.update_position()
-                               
+                        print('position updated')
+                        
                         print(My_hedge.Movement_needed)
                                 
                         if My_hedge.Movement_needed[0] > 0.1:
+                                 print('Moving Left')
                                 if Left_dir_flag == False:
                                                 
                                         #all decelerate
                                         PWM_a.Accelerate(0, 0.05, -1)
                                         PWM_b.Accelerate(0, 0.05, -1)
-                                                
-                                        print('Moving Left')
-                                               
+                                                                                               
                                         #Set direction for left movement
                                         Motor1.set_direction(0)
                                         Motor2.set_direction(1)
@@ -77,14 +78,13 @@ def main():
                         elif (My_hedge.Movement_needed[0] <0.1) and (My_hedge.Movement_needed[0] > -0.1):
                                 #move ahead
                                 if My_hedge.Movement_needed[1] > 0.1:
+                                        print('Moving forward')
                                         if Front_dir_flag == False:
                                                       
                                                 #all decelerate
                                                 PWM_a.Accelerate(0, 0.05, -1)
                                                 PWM_b.Accelerate(0, 0.05, -1)
-                                                       
-                                                print('Moving forward')
-                                                        
+                                                             
                                                 #Set direction for forward movement
                                                 Motor1.set_direction(0)
                                                 Motor2.set_direction(0)
@@ -103,13 +103,14 @@ def main():
                                         sys.exit()
                                         #all decelerate
                                 else:
+                                        print('Moving backwards')
                                         if Back_dir_flag == False:
                                                         
                                                 #all decelerate
                                                 PWM_a.Accelerate(0, 0.05, -1)
                                                 PWM_b.Accelerate(0, 0.05, -1)
                                                         
-                                                print('Moving backwards')
+                                                
                                                         
                                                 #Set direction for backwards movement
                                                 Motor1.set_direction(1)
@@ -123,13 +124,14 @@ def main():
                                                 PWM_b.Accelerate(50, 0.05, 1)
                                                         
                         else:
+                                print('Moving right')
                                 if Right_dir_flag == False:
                                                 
                                         #all decelerate
                                         PWM_a.Accelerate(0, 0.05, -1)
                                         PWM_b.Accelerate(0, 0.05, -1)
                                         
-                                        print('Moving right')
+                                        
                                         
                                         #Set direction for right movement
                                         Motor1.set_direction(1)
