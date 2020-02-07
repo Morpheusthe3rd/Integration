@@ -12,7 +12,7 @@ hedge.start()
 
 class hedge_Positions:	#This class contains the data on the hedgehog positions, and the method to update them.
 	def __init__(self):
-		self.Position_now = [0, 0]
+		self.Position_now = [hedge.position()[1], hedge.position()[2]]
 		self.Position_minus1 = [0, 0]
 		self.Position_minus2 = [0, 0]
 		self.Target_coord = [0, 0]
