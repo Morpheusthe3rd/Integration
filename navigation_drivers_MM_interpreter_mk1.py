@@ -59,10 +59,10 @@ def main():
 
 	My_hedge = hedge_Positions()
 	
-	print('Welcome to navigation_drivers_MM_interpreter_mk.1!.')
-	My_hedge.Target_coord[0] = input('Please enter target location X coord.: ')
-	My_hedge.Target_coord[1] = input('Please enter target location Y coord.: ')
-	print ('Target: ',My_hedge.Target_coord)
+	#print('Welcome to navigation_drivers_MM_interpreter_mk.1!.')
+	#My_hedge.Target_coord[0] = input('Please enter target location X coord.: ')
+	#My_hedge.Target_coord[1] = input('Please enter target location Y coord.: ')
+	#print ('Target: ',My_hedge.Target_coord)
 
 	while True:
 		try:
