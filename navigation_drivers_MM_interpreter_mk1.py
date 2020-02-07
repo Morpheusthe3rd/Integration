@@ -78,3 +78,4 @@ def main():
 			hedge.stop()
 			sys.exit()
 
+main()
