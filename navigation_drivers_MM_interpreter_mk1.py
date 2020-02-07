@@ -22,8 +22,8 @@ class hedge_Positions:	#This class contains the data on the hedgehog positions, 
 		self.Movement_needed = [0, 0]
 		
 	def update_position(self):
-		self.Position_minus2 = self.Position_minus1
-		self.Position_minus1 = self.Position_now
+		#self.Position_minus2 = self.Position_minus1
+		#self.Position_minus1 = self.Position_now
 		self.Position_now[0] = hedge.position()[1]
 		self.Position_now[1] = hedge.position()[2]
 		
