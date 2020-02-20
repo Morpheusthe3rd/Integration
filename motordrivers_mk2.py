@@ -37,7 +37,8 @@ class PWM: #This class defines the data and functions surrounding the PWM contro
 		self.Current_duty_cycle = 0
 		
 		IO.setup(self.output_Pin, IO.OUT)
-		self.MotorPWM = IO.PWM(self.output_Pin, self.PWMFrequency) #This section may not work as intended, look here first for errors.
+		
+	self.MotorPWM = IO.PWM(self.output_Pin, self.PWMFrequency) #This section may not work as intended, look here first for errors.
 		
 	def Accelerate(self, final_duty_cycle, interval, direction):
 	#The acceleration function handles both increases and decreases in duty cycle. This is possible through the range function, 
