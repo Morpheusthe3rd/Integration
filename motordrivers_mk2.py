@@ -168,9 +168,9 @@ def main():
 	Motor3.set_direction(0)
 	Motor4.set_direction(0)
 
-	Motor_control_accelerate_all(0.05,100)
+	Motor_control_accelerate_all(0.05,25)
 	time.sleep(2)
-	Motor_control_decelerate_all(0.05,100)
+	Motor_control_decelerate_all(0.05,25)
 	print('End operation 1.')
 
 	#Operation 2: all motors backwards, accelerate, 1 sec pause, decelerate
@@ -180,9 +180,9 @@ def main():
         Motor3.set_direction(1)
         Motor4.set_direction(1)
 
-        Motor_control_accelerate_all(0.05,100)
+        Motor_control_accelerate_all(0.05,25)
         time.sleep(2)
-        Motor_control_decelerate_all(0.05,100)
+        Motor_control_decelerate_all(0.05,25)
 	print('End operation 2.')
 
 	#Operation 3: Tank turn. Left forward, right back, accelerate, 1 sec pause,
@@ -193,9 +193,9 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(0)
 
-        Motor_control_accelerate_all(0.05,100)
+        Motor_control_accelerate_all(0.05,25)
         time.sleep(2)
-        Motor_control_decelerate_all(0.05,100)
+        Motor_control_decelerate_all(0.05,25)
 	print('End operation 3.')
 	#Operation 4: Crab. Front backwards, back forwards, accelerate, 1 sec pause,
 	#decelerate
@@ -205,9 +205,9 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(1)
 
-        Motor_control_accelerate_all(0.05,100)
+        Motor_control_accelerate_all(0.05,25)
         time.sleep(2)
-        Motor_control_decelerate_all(0.05,100)
+        Motor_control_decelerate_all(0.05,25)
 	print('End operation 4.')
 
 	#Operation 5: All motors stop
