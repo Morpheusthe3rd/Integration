@@ -44,9 +44,12 @@ class PWM: #This class defines the data and functions surrounding the PWM contro
 	#which allows the direction of the range to be set: 1 for upwards, -1 for reverse. The function iterates from the current
 	#duty cycle to the final duty cycle, in the specified direction. It then sets the new current duty cycle to the desired one.
 		print('Debug: accelerating')
-		print('Final Duty Cycle: ' final_duty_cycle)
-		print('Interval: ' interval)
-		print('Direction: ' direction)
+		print('Final Duty Cycle: ') 
+		print(final_duty_cycle)
+		print('Interval: ' )
+		print(interval)
+		print('Direction: ')
+		print(direction)
 		for i in range (self.Current_duty_cycle, final_duty_cycle, direction):
 			self.PWM.ChangeDutyCycle(i)
 			time.sleep(interval)
@@ -132,8 +135,8 @@ def main():
         Motor3.set_direction(1)
         Motor4.set_direction(1)
 
-	PMW_a.Accelerate(50, 0.01, 1)
-	PWM_b.Accelerate(50, 0.01, 1)
+	Power_a.Accelerate(50, 0.01, 1)
+	Power_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
@@ -149,8 +152,8 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(0)
 
-	PMW_a.Accelerate(50, 0.01, 1)
-	PWM_b.Accelerate(50, 0.01, 1)
+	Power_a.Accelerate(50, 0.01, 1)
+	Power_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
