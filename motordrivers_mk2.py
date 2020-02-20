@@ -59,8 +59,8 @@ Motor3 = Motor(24,25)
 Motor4 = Motor(5,6)
 
 #PWM wave setup
-PWM_a = PWM(18,100)
-PWM_b = PWM(13,100)
+Power_a = PWM(18,100)
+Power_b = PWM(13,100)
 
 #PWM test-
 #This function allows testing of a single PWM. The signal should
@@ -87,8 +87,8 @@ def All_stop():
 	IO.output(5,IO.LOW)
 	IO.output(6,IO.LOW)
 
-	PWM_a.stop()
-	PWM_b.stop()
+	Power_a.stop()
+	Power_b.stop()
 	print('All motors should now be stopped')
 
 #Main function-
@@ -107,13 +107,13 @@ def main():
 	Motor3.set_direction(0)
 	Motor4.set_direction(0)
 
-	PMW_a.Accelerate(50, 0.01, 1)
-	PWM_b.Accelerate(50, 0.01, 1)
+	Power_a.Accelerate(50, 0.01, 1)
+	Power_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
-	PMW_a.Accelerate(50, 0.01, -1)
-	PWM_b.Accelerate(50, 0.01, -1)
+	Power_a.Accelerate(50, 0.01, -1)
+	Power_b.Accelerate(50, 0.01, -1)
 	
 	
 	print('End operation 1.')
@@ -130,8 +130,8 @@ def main():
 	
 	time.sleep(2)
 	
-	PMW_a.Accelerate(50, 0.01, -1)
-	PWM_b.Accelerate(50, 0.01, -1)
+	Power_a.Accelerate(50, 0.01, -1)
+	Power_b.Accelerate(50, 0.01, -1)
 	print('End operation 2.')
 
 	#Operation 3: Tank turn. Left forward, right back, accelerate, 1 sec pause,
@@ -147,8 +147,8 @@ def main():
 	
 	time.sleep(2)
 	
-	PMW_a.Accelerate(50, 0.01, -1)
-	PWM_b.Accelerate(50, 0.01, -1)
+	Power_a.Accelerate(50, 0.01, -1)
+	Power_b.Accelerate(50, 0.01, -1)
 	print('End operation 3.')
 	
 	#Operation 4: Crab. Front backwards, back forwards, accelerate, 1 sec pause,
@@ -159,13 +159,13 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(1)
 
-	PMW_a.Accelerate(50, 0.01, 1)
-	PWM_b.Accelerate(50, 0.01, 1)
+	Power_a.Accelerate(50, 0.01, 1)
+	Power_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
-	PMW_a.Accelerate(50, 0.01, -1)
-	PWM_b.Accelerate(50, 0.01, -1)
+	Power_a.Accelerate(50, 0.01, -1)
+	Power_b.Accelerate(50, 0.01, -1)
 	print('End operation 4.')
 
 	#Operation 5: All motors stop
