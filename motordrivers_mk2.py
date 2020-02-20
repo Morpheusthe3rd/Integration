@@ -47,20 +47,20 @@ class PWM: #This class defines the data and functions surrounding the PWM contro
 		self.Current_duty_cycle = final_duty_cycle
 
 #Motor 1 pins (assumed front right)
-#Motor1 = Motor(17, 27)
+Motor1 = Motor(17, 27)
 
 #Motor 2 pins (assumed back right)
-#Motor2 = Motor(22,23)
+Motor2 = Motor(22,23)
 
 #Motor 3 pins (assumed front left)
-#Motor3 = Motor(24,25)
+Motor3 = Motor(24,25)
 
 #Motor 4 pins (assumed back left)
-#Motor4 = Motor(5,6)
+Motor4 = Motor(5,6)
 
 #PWM wave setup
-#PWM_a = PWM(18,100)
-#PWM_b = PWM(13,100)
+PWM_a = PWM(18,100)
+PWM_b = PWM(13,100)
 
 #PWM test-
 #This function allows testing of a single PWM. The signal should
@@ -98,7 +98,7 @@ def main():
 	print('Main start.')
 
 	#Operation 0: PWM_test
-	PWM_a_test()
+	#PWM_a_test()
 
 	#Operation 1: all motors forward, accelerate, 1 sec pause, decelerate
 	print('Start operation 1, all motors forward, accelerate, pause, decelerate.')
@@ -107,13 +107,13 @@ def main():
 	Motor3.set_direction(0)
 	Motor4.set_direction(0)
 
-	PMW_a.Accelerate(100, 0.01, 1)
-	PWM_b.Accelerate(100, 0.01, 1)
+	PMW_a.Accelerate(50,0.01, 1)
+	PWM_b.Accelerate(50 0.01, 1)
 	
 	time.sleep(2)
 	
-	PMW_a.Accelerate(100, 0.01, -1)
-	PWM_b.Accelerate(100, 0.01, -1)
+	PMW_a.Accelerate(50, 0.01, -1)
+	PWM_b.Accelerate(50, 0.01, -1)
 	
 	
 	print('End operation 1.')
@@ -125,13 +125,13 @@ def main():
         Motor3.set_direction(1)
         Motor4.set_direction(1)
 
-	PMW_a.Accelerate(100, 0.01, 1)
-	PWM_b.Accelerate(100, 0.01, 1)
+	PMW_a.Accelerate(50, 0.01, 1)
+	PWM_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
-	PMW_a.Accelerate(100, 0.01, -1)
-	PWM_b.Accelerate(100, 0.01, -1)
+	PMW_a.Accelerate(50, 0.01, -1)
+	PWM_b.Accelerate(50, 0.01, -1)
 	print('End operation 2.')
 
 	#Operation 3: Tank turn. Left forward, right back, accelerate, 1 sec pause,
@@ -142,13 +142,13 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(0)
 
-	PMW_a.Accelerate(100, 0.01, 1)
-	PWM_b.Accelerate(100, 0.01, 1)
+	PMW_a.Accelerate(50, 0.01, 1)
+	PWM_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
-	PMW_a.Accelerate(100, 0.01, -1)
-	PWM_b.Accelerate(100, 0.01, -1)
+	PMW_a.Accelerate(50, 0.01, -1)
+	PWM_b.Accelerate(50, 0.01, -1)
 	print('End operation 3.')
 	
 	#Operation 4: Crab. Front backwards, back forwards, accelerate, 1 sec pause,
@@ -159,13 +159,13 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(1)
 
-	PMW_a.Accelerate(100, 0.01, 1)
-	PWM_b.Accelerate(100, 0.01, 1)
+	PMW_a.Accelerate(50, 0.01, 1)
+	PWM_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
-	PMW_a.Accelerate(100, 0.01, -1)
-	PWM_b.Accelerate(100, 0.01, -1)
+	PMW_a.Accelerate(50, 0.01, -1)
+	PWM_b.Accelerate(50, 0.01, -1)
 	print('End operation 4.')
 
 	#Operation 5: All motors stop
@@ -174,3 +174,4 @@ def main():
 	print('End operation 5.')
 
 
+main()
