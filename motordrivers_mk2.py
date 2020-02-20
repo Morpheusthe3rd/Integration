@@ -18,7 +18,7 @@ class Motor: #This lass defines the motor direction pins and their assumed posit
 		IO.setup(PIN_1,IO.OUT)
 		IO.setup(PIN_2,IO.OUT)
 		
-	def set_direction(decision_bit):
+	def set_direction(self, decision_bit):
 		if decision_bit == 0:
 			IO.output(self.forward_pin, IO.HIGH)
 			IO.output(self.backward_pin, IO.LOW)
