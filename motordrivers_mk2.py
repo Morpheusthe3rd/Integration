@@ -107,8 +107,8 @@ def main():
 	Motor3.set_direction(0)
 	Motor4.set_direction(0)
 
-	PMW_a.Accelerate(50,0.01, 1)
-	PWM_b.Accelerate(50 0.01, 1)
+	PMW_a.Accelerate(50, 0.01, 1)
+	PWM_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
