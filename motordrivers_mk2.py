@@ -22,9 +22,11 @@ class Motor: #This class defines the motor direction pins and their assumed posi
 		if decision_bit == 0:
 			IO.output(self.forward_pin, IO.HIGH)
 			IO.output(self.backward_pin, IO.LOW)
+			print('Direction Forward')
 		elif decision_bit == 1:
 			IO.output(self.forward_pin, IO.LOW)
 			IO.output(self.backward_pin, IO.HIGH)
+			print('Direction Backward')
 		else: 
 			print("Exception. Unexpected 'decision_bit' value.")
 class PWM: #This class defines the data and functions surrounding the PWM controls
@@ -41,9 +43,14 @@ class PWM: #This class defines the data and functions surrounding the PWM contro
 	#The acceleration function handles both increases and decreases in duty cycle. This is possible through the range function, 
 	#which allows the direction of the range to be set: 1 for upwards, -1 for reverse. The function iterates from the current
 	#duty cycle to the final duty cycle, in the specified direction. It then sets the new current duty cycle to the desired one.
+		print('Debug: accelerating')
+		print('Final Duty Cycle: ' final_duty_cycle)
+		print('Interval: ' interval)
+		print('Direction: ' direction)
 		for i in range (self.Current_duty_cycle, final_duty_cycle, direction):
 			self.PWM.ChangeDutyCycle(i)
 			time.sleep(interval)
+			#print(i)
 		self.Current_duty_cycle = final_duty_cycle
 
 #Motor 1 pins (assumed front right)
