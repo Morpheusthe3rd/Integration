@@ -56,6 +56,7 @@ class PWM: #This class defines the data and functions surrounding the PWM contro
 			#print(i)
 		self.Current_duty_cycle = final_duty_cycle
 
+
 #Motor 1 pins (assumed front right)
 Motor1 = Motor(17, 27)
 
@@ -96,9 +97,8 @@ def All_stop():
 	IO.output(25,IO.LOW)
 	IO.output(5,IO.LOW)
 	IO.output(6,IO.LOW)
-
-	Power_a.stop()
-	Power_b.stop()
+	IO.output(18,IO.LOW)
+	IO.output(13,IO.LOW)
 	print('All motors should now be stopped')
 
 #Main function-
