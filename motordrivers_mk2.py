@@ -4,25 +4,45 @@ import time
 IO.setwarnings(False)
 IO.setmode(IO.BCM)
 
+class Motor: #This lass defines the motor direction pins and their assumed position on the robot. 
+	def __init__(self, PIN_1, PIN_2):
+		
+		self.left = False
+		self.right = False
+		self.front = False
+		self.back = False
+		
+		self.forward_pin = PIN_1
+		self.backward_pin = PIN_2
+		
+		IO.setup(PIN_1,IO.OUT)
+		IO.setup(PIN_2,IO.OUT)
+		
+	def set_direction(self, decision_bit):
+		if decision_bit == 0:
+			IO.output(self.forward_pin, IO.HIGH)
+			IO.output(self.backward_pin, IO.LOW)
+		elif decision_bit == 1:
+			IO.output(self.forward_pin, IO.LOW)
+			IO.output(self.backward_pin, IO.HIGH)
+		else: 
+			print("Exception. Unexpected 'decision_bit' value.")
+
 #PWM manager pins
 IO.setup(18,IO.OUT) #right side
 IO.setup(13,IO.OUT) #left side
 
-#Motor 1 pins (front right)
-IO.setup(17,IO.OUT) #forward
-IO.setup(27,IO.OUT) #backward
+#Motor 1 pins (assumed front right)
+Motor1 = Motor(17, 27)
 
-#Motor 2 pins (back right)
-IO.setup(22,IO.OUT) #forward
-IO.setup(23,IO.OUT) #backward
+#Motor 2 pins (assumed back right)
+Motor2 = Motor(22,23)
 
-#Motor 3 pins (front left)
-IO.setup(24,IO.OUT) #forward
-IO.setup(25,IO.OUT) #backward
+#Motor 3 pins (assumed front left)
+Motor3 = Motor(24,25)
 
-#Motor 4 pins (back left
-IO.setup(5,IO.OUT) #forward
-IO.setup(6,IO.OUT) #backward
+#Motor 4 pins (assumed back left)
+Motor4 = Motor(5,6)
 
 #PWM wave setup
 PWM_a = IO.PWM(18, 100)
@@ -115,65 +135,6 @@ def Motor_control_decelerate_b(X,Y):
                 PWM_b.ChangeDutyCycle(100-i)
                 time.sleep(X)
 
-#Direction controlers
-
-#This function drives the direction of motor 1. A value of 0 produces forwards movement
-#, while 1 produces reverse. Throws exception if passed incorrect value.
-def Motor_control_Direction_1(X):
-	if X==0:
-		IO.output(17,IO.HIGH) #This statement sets forward pin(17) to high
-		IO.output(27,IO.LOW)  #This statement sets reverse pin(27) to low
-
-	elif X==1:
-		IO.output(17,IO.LOW)  #This statement sets forward pin(17) to low
-		IO.output(27,IO.HIGH) #This statement sets reverse pin(27) to high
-
-	else :
-		raise Exception('Invalid value passed to Motor_control_direction_1. Accepted values: 0, 1.')
-
-
-#This function drives the direction of motor 2. A value of 0 produces forwards movement
-#, while 1 produces reverse. Throws exception if passed incorrect value.
-def Motor_control_Direction_2(X):
-        if X==0:
-                IO.output(22,IO.HIGH) #This statement sets forward pin(22) to high
-                IO.output(23,IO.LOW)  #This statement sets reverse pin(23) to low
-
-        elif X==1:
-                IO.output(22,IO.LOW)  #This statement sets forward pin(22) to low
-                IO.output(23,IO.HIGH) #This statement sets reverse pin(23) to high
-
-        else :
-                raise Exception('Invalid value passed to Motor_control_direction_1. Acceptable values: 0, 1.')
-
-#This function drives the direction of motor 3. A value of 0 produces forwards movement
-#, while 1 produces reverse. Throws exception if passed incorrect value.
-def Motor_control_Direction_3(X):
-        if X==0:
-                IO.output(24,IO.HIGH) #This statement sets forward pin(24) to high
-                IO.output(25,IO.LOW)  #This statement sets reverse pin(25) to low
-
-        elif X==1:
-                IO.output(24,IO.LOW)  #This statement sets forward pin(24) to low
-                IO.output(25,IO.HIGH) #This statement sets reverse pin(25) to high
-
-        else :
-                raise Exception('Invalid value passed to Motor_control_direction_1. Acceptable values: 0, 1.')
-
-#This function drives the direction of motor 4. A value of 0 produces forwards movement
-#, while 1 produces reverse. Throws exception if passed incorrect value.
-def Motor_control_Direction_4(X):
-        if X==0:
-                IO.output(5,IO.HIGH) #This statement sets forward pin(5) to high
-                IO.output(6,IO.LOW)  #This statement sets reverse pin(6) to low
-
-        elif X==1:
-                IO.output(5,IO.LOW)  #This statement sets forward pin(5) to low
-                IO.output(6,IO.HIGH) #This statement sets reverse pin(6) to high
-
-        else :
-                raise Exception('Invalid value passed to Motor_control_direction_1. Acceptable values: 0, 1.')
-
 #This function should be appended to the end of all programs operating motors
 #It sets all of the motor direction controls to stationary
 
@@ -202,51 +163,51 @@ def main():
 
 	#Operation 1: all motors forward, accelerate, 1 sec pause, decelerate
 	print('Start operation 1, all motors forward, accelerate, pause, decelerate.')
-	Motor_control_Direction_1(0)
-	Motor_control_Direction_2(0)
-	Motor_control_Direction_3(0)
-	Motor_control_Direction_4(0)
+	Motor1.set_direction(0)
+	Motor2.set_direction(0)
+	Motor3.set_direction(0)
+	Motor4.set_direction(0)
 
-	Motor_control_accelerate_all(0.05,100)
+	Motor_control_accelerate_all(0.05,25)
 	time.sleep(2)
-	Motor_control_decelerate_all(0.05,100)
+	Motor_control_decelerate_all(0.05,25)
 	print('End operation 1.')
 
 	#Operation 2: all motors backwards, accelerate, 1 sec pause, decelerate
 	print('Start operation 2, all motors back, accelerate, pause, decelerate.')
-        Motor_control_Direction_1(1)
-        Motor_control_Direction_2(1)
-        Motor_control_Direction_3(1)
-        Motor_control_Direction_4(1)
+        Motor1.set_direction(1)
+        Motor2.set_direction(1)
+        Motor3.set_direction(1)
+        Motor4.set_direction(1)
 
-        Motor_control_accelerate_all(0.05,100)
+        Motor_control_accelerate_all(0.05,25)
         time.sleep(2)
-        Motor_control_decelerate_all(0.05,100)
+        Motor_control_decelerate_all(0.05,25)
 	print('End operation 2.')
 
 	#Operation 3: Tank turn. Left forward, right back, accelerate, 1 sec pause,
 	#decelerate
 	print('Start operation 3, left forward, right back, accelerate, pause decelerate.')
-        Motor_control_Direction_1(1)
-        Motor_control_Direction_2(1)
-        Motor_control_Direction_3(0)
-        Motor_control_Direction_4(0)
+        Motor1.set_direction(1)
+        Motor2.set_direction(1)
+        Motor3.set_direction(0)
+        Motor4.set_direction(0)
 
-        Motor_control_accelerate_all(0.05,100)
+        Motor_control_accelerate_all(0.05,25)
         time.sleep(2)
-        Motor_control_decelerate_all(0.05,100)
+        Motor_control_decelerate_all(0.05,25)
 	print('End operation 3.')
 	#Operation 4: Crab. Front backwards, back forwards, accelerate, 1 sec pause,
 	#decelerate
 	print('Start operation 4, front backwards, back frontwards, accelerate, pause, decelerate')
-        Motor_control_Direction_1(0)
-        Motor_control_Direction_2(1)
-        Motor_control_Direction_3(0)
-        Motor_control_Direction_4(1)
+        Motor1.set_direction(0)
+        Motor2.set_direction(1)
+        Motor3.set_direction(0)
+        Motor4.set_direction(1)
 
-        Motor_control_accelerate_all(0.05,100)
+        Motor_control_accelerate_all(0.05,25)
         time.sleep(2)
-        Motor_control_decelerate_all(0.05,100)
+        Motor_control_decelerate_all(0.05,25)
 	print('End operation 4.')
 
 	#Operation 5: All motors stop
