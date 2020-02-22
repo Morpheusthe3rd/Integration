@@ -13,6 +13,7 @@ Ancellary sensors: non-functional.
 
 Next Steps: 
 
+0.) Implement comprehensive logging
 1.) Perfect Motor control.
 2.) Implement Remote Control.
 3.) Perfect autonomous Navigation.
