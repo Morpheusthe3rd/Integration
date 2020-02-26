@@ -1,5 +1,9 @@
 import RPi.GPIO as IO
 import time
+import logging
+
+logging.basicConfig(filename='Motordriver.log', level=logging.debug) 
+logging.info('Logging file begin')
 
 IO.setwarnings(False)
 IO.setmode(IO.BCM)
@@ -22,13 +26,13 @@ class Motor: #This class defines the motor direction pins and their assumed posi
 		if decision_bit == 0:
 			IO.output(self.forward_pin, IO.HIGH)
 			IO.output(self.backward_pin, IO.LOW)
-			print('Direction Forward')
+			logging.info('Direction Forward')
 		elif decision_bit == 1:
 			IO.output(self.forward_pin, IO.LOW)
 			IO.output(self.backward_pin, IO.HIGH)
-			print('Direction Backward')
+			logging.info('Direction Backward')
 		else: 
-			print("Exception. Unexpected 'decision_bit' value.")
+			logging.warning("Exception. Unexpected 'decision_bit' value.")
 class PWM: #This class defines the data and functions surrounding the PWM controls
 	def __init__(self, PIN_1, Frequency):
 		
@@ -107,6 +111,9 @@ def All_stop():
 #running through all the various operations our drive system is capable of.
 def main():
 	print('Main start.')
+	
+	Power_a.PWM.start()
+	Power_b.PWM.start()
 
 	#Operation 0: PWM_test
 	#PWM_a_test()
