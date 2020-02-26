@@ -3,7 +3,7 @@ import time
 import datetime
 import logging
 
-logging.basicConfig(filename='Motordriver.log', level=logging.debug) 
+logging.basicConfig(filename='Motordriver.log', level=logging.DEBUG) 
 logging.info('Logging file begin. Date of most recent run: %s', datetime.datetime.now())
 
 logging.info('Imported packages:')
