@@ -79,17 +79,17 @@ class PWM: #This class defines the data and functions surrounding the PWM contro
 		self.Current_duty_cycle = final_duty_cycle
 
 
-#Motor 1 pins (assumed front right)
-Motor1 = Motor(17, 27)
+#Motor 3 pins (assumed front right)
+Motor3 = Motor(17, 27)
 
 #Motor 2 pins (assumed back right)
 Motor2 = Motor(22,23)
 
-#Motor 3 pins (assumed front left)
-Motor3 = Motor(24,25)
+#Motor 4 pins (assumed front left)
+Motor4 = Motor(24,25)
 
-#Motor 4 pins (assumed back left)
-Motor4 = Motor(5,6)
+#Motor 1 pins (assumed back left)
+Motor1 = Motor(5,6)
 
 #PWM wave setup
 Power_a = PWM(18,100)
