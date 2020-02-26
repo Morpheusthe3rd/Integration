@@ -1,9 +1,16 @@
 import RPi.GPIO as IO
 import time
+import datetime
 import logging
 
 logging.basicConfig(filename='Motordriver.log', level=logging.debug) 
-logging.info('Logging file begin')
+logging.info('Logging file begin. Date of most recent run: %s', datetime.datetime.now())
+
+logging.info('Imported packages:')
+logging.info('		RPi.GPIO as IO')
+logging.info('		time')
+logging.info('		datetime')
+logging.info('		logging')
 
 IO.setwarnings(False)
 IO.setmode(IO.BCM)
