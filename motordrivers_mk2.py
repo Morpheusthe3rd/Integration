@@ -73,7 +73,7 @@ class PWM: #This class defines the data and functions surrounding the PWM contro
 		logging.debug('Direction: ')
 		logging.debug(direction)
 		for i in range (self.Current_duty_cycle, final_duty_cycle, direction):
-			self.PWM.ChangeDutyCycle(i)
+			self.MotorPWM.ChangeDutyCycle(i)
 			time.sleep(interval)
 			logging.debug('PWM suty-cycle: %f', i)
 		self.Current_duty_cycle = final_duty_cycle
