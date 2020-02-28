@@ -102,7 +102,7 @@ Power_b = PWM(13,100)
 def PWM_a_test():
 
 	print('Start PWM_a test')
-	PWM_a.PWM.start(0) #Starts PWM_a with a 0% duty cycle
+	PWM_a.MotorPWM.start(0) #Starts PWM_a with a 0% duty cycle
 	PWM_a.Accelerate(100, 0.01, 1)
 	PWM_a.Accelerate(0, 0.01, -1)
 	print('End PWM_a test')
@@ -129,8 +129,8 @@ def All_stop():
 def main():
 	print('Main start.')
 	
-	Power_a.PWM.start(0)
-	Power_b.PWM.start(0)
+	Power_a.MotorPWM.start(0)
+	Power_b.MotorPWM.start(0)
 
 	#Operation 0: PWM_test
 	#PWM_a_test()
@@ -206,8 +206,8 @@ def main():
 	#Operation 5: All motors stop
 	print('Start operation 5, all stop.')
 	All_stop()
-	Power_a.PWM.stop()
-	Power_b.PWM.stop()
+	Power_a.MotorPWM.stop()
+	Power_b.MotorPWM.stop()
 	IO.cleanup()
 	print('End operation 5.')
 
