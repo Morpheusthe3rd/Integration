@@ -110,9 +110,9 @@ def PWM_a_test():
 #This function should be appended to the end of all programs operating motors
 #It sets all of the motor direction controls to stationary
 
-def all_accelerate(PWM1, PWM2, interval, Final_Duty, direction):
+def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
 	starting_duty = (PWM1.Current_duty_cycle + PWM2.Current_duty_cycle)/2
-	for i in range (starting_duty, Final_duty, direction):
+	for i in range (starting_duty, final_duty, direction):
 		PWM1.MotorPWM.ChangeDutyCycle(i)
 		PWM2.MotorPWM.ChangeDutyCycle(i)
 		time.sleep(interval)
