@@ -188,11 +188,11 @@ def main():
 	
 	#Operation 4: Crab. Front backwards, back forwards, accelerate, 1 sec pause,
 	#decelerate
-	print('Start operation 4, front backwards, back frontwards, accelerate, pause, decelerate')
+	print('Start operation 4, front right back left backwards, back right front left frontwards, accelerate, pause, decelerate')
         Motor1.set_direction(0)
         Motor2.set_direction(1)
-        Motor3.set_direction(0)
-        Motor4.set_direction(1)
+        Motor3.set_direction(1)
+        Motor4.set_direction(0)
 
 	Power_a.Accelerate(50, 0.01, 1)
 	Power_b.Accelerate(50, 0.01, 1)
