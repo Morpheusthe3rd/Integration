@@ -110,11 +110,12 @@ def PWM_a_test():
 #This function should be appended to the end of all programs operating motors
 #It sets all of the motor direction controls to stationary
 
-def all_accelerate(PWM1, PWM2, Final_Duty, direction):
+def all_accelerate(PWM1, PWM2, interval, Final_Duty, direction):
 	starting_duty = (PWM1.Current_duty_cycle + PWM2.Current_duty_cycle)/2
 	for i in range (starting_duty, Final_duty, direction):
 		PWM1.MotorPWM.ChangeDutyCycle(i)
 		PWM2.MotorPWM.ChangeDutyCycle(i)
+		time.sleep(interval)
 	PWM1.Curent_duty_cycle = Final_duty
 	PWM2.Curent_duty_cycle = Final_duty
 	
@@ -150,13 +151,15 @@ def main():
 	Motor3.set_direction(0)
 	Motor4.set_direction(0)
 
-	Power_a.Accelerate(50, 0.01, 1)
-	Power_b.Accelerate(50, 0.01, 1)
+	all_accelerate(Power_a, Power_b, 0.01, 50, 1)
+	#Power_a.Accelerate(50, 0.01, 1)
+	#Power_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
-	Power_a.Accelerate(0, 0.01, -1)
-	Power_b.Accelerate(0, 0.01, -1)
+	all_accelerate(Power_a, Power_b, 0.01, 50, -1)
+	#Power_a.Accelerate(0, 0.01, -1)
+	#Power_b.Accelerate(0, 0.01, -1)
 	
 	
 	print('End operation 1.')
@@ -167,14 +170,16 @@ def main():
         Motor2.set_direction(1)
         Motor3.set_direction(1)
         Motor4.set_direction(1)
-
-	Power_a.Accelerate(50, 0.01, 1)
-	Power_b.Accelerate(50, 0.01, 1)
+	
+	all_accelerate(Power_a, Power_b, 0.01, 50, 1)
+	#Power_a.Accelerate(50, 0.01, 1)
+	#Power_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
-	Power_a.Accelerate(0, 0.01, -1)
-	Power_b.Accelerate(0, 0.01, -1)
+	all_accelerate(Power_a, Power_b, 0.01, 50, -1)
+	#Power_a.Accelerate(0, 0.01, -1)
+	#Power_b.Accelerate(0, 0.01, -1)
 	print('End operation 2.')
 
 	#Operation 3: Tank turn. Left forward, right back, accelerate, 1 sec pause,
@@ -185,13 +190,15 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(0)
 
-	Power_a.Accelerate(50, 0.01, 1)
-	Power_b.Accelerate(50, 0.01, 1)
+	all_accelerate(Power_a, Power_b, 0.01, 50, 1)
+	#Power_a.Accelerate(50, 0.01, 1)
+	#Power_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
-	Power_a.Accelerate(0, 0.01, -1)
-	Power_b.Accelerate(0, 0.01, -1)
+	all_accelerate(Power_a, Power_b, 0.01, 50, -1)
+	#Power_a.Accelerate(0, 0.01, -1)
+	#Power_b.Accelerate(0, 0.01, -1)
 	print('End operation 3.')
 	
 	#Operation 4: Crab. Front backwards, back forwards, accelerate, 1 sec pause,
@@ -201,14 +208,16 @@ def main():
         Motor2.set_direction(1)
         Motor3.set_direction(1)
         Motor4.set_direction(0)
-
-	Power_a.Accelerate(50, 0.01, 1)
-	Power_b.Accelerate(50, 0.01, 1)
+	
+	all_accelerate(Power_a, Power_b, 0.01, 50, 1)
+	#Power_a.Accelerate(50, 0.01, 1)
+	#Power_b.Accelerate(50, 0.01, 1)
 	
 	time.sleep(2)
 	
-	Power_a.Accelerate(0, 0.01, -1)
-	Power_b.Accelerate(0, 0.01, -1)
+	all_accelerate(Power_a, Power_b, 0.01, 50, -1)
+	#Power_a.Accelerate(0, 0.01, -1)
+	#Power_b.Accelerate(0, 0.01, -1)
 	print('End operation 4.')
 
 	#Operation 5: All motors stop
