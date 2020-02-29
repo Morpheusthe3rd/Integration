@@ -157,7 +157,7 @@ def main():
 	
 	time.sleep(2)
 	
-	all_accelerate(Power_a, Power_b, 0.01, 50, -1)
+	all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 	#Power_a.Accelerate(0, 0.01, -1)
 	#Power_b.Accelerate(0, 0.01, -1)
 	
@@ -177,7 +177,7 @@ def main():
 	
 	time.sleep(2)
 	
-	all_accelerate(Power_a, Power_b, 0.01, 50, -1)
+	all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 	#Power_a.Accelerate(0, 0.01, -1)
 	#Power_b.Accelerate(0, 0.01, -1)
 	print('End operation 2.')
@@ -196,7 +196,7 @@ def main():
 	
 	time.sleep(2)
 	
-	all_accelerate(Power_a, Power_b, 0.01, 50, -1)
+	all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 	#Power_a.Accelerate(0, 0.01, -1)
 	#Power_b.Accelerate(0, 0.01, -1)
 	print('End operation 3.')
@@ -215,7 +215,7 @@ def main():
 	
 	time.sleep(2)
 	
-	all_accelerate(Power_a, Power_b, 0.01, 50, -1)
+	all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 	#Power_a.Accelerate(0, 0.01, -1)
 	#Power_b.Accelerate(0, 0.01, -1)
 	print('End operation 4.')
