@@ -112,7 +112,9 @@ def PWM_a_test():
 
 def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
 	starting_duty = (PWM1.Current_duty_cycle + PWM2.Current_duty_cycle)/2
+	print(starting_duty)
 	for i in range (starting_duty, final_duty, direction):
+		print(i)
 		PWM1.MotorPWM.ChangeDutyCycle(i)
 		PWM2.MotorPWM.ChangeDutyCycle(i)
 		time.sleep(interval)
