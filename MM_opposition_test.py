@@ -29,6 +29,15 @@ def main():
 			except KeyboardInterrupt:
 				hedgeX.stop()
 				sys.exit()
+				
+		for i in range (len(hedge_readings)):
+			if hedge_readings[i] == 9:
+				hedge_readings[i] = 0
+			else:
+				hedge_enemy = hedge_readings[i]
+			
+		print(hedge_enemy)
+			
 	except KeyboardInterrupt:
 		hedgeX.stop()
 		sys.exit()
