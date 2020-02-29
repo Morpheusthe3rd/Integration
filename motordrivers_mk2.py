@@ -139,7 +139,7 @@ def main():
 	Motor3.set_direction(0)
 	Motor4.set_direction(0)
 
-	all_accelerate(Power_a, Power_b, 0.01, 50, 1)
+	all_accelerate(Power_a, Power_b, 0.01, 75, 1)
 	#Power_a.Accelerate(50, 0.01, 1)
 	#Power_b.Accelerate(50, 0.01, 1)
 	
@@ -159,7 +159,7 @@ def main():
         Motor3.set_direction(1)
         Motor4.set_direction(1)
 	
-	all_accelerate(Power_a, Power_b, 0.01, 50, 1)
+	all_accelerate(Power_a, Power_b, 0.01, 75, 1)
 	#Power_a.Accelerate(50, 0.01, 1)
 	#Power_b.Accelerate(50, 0.01, 1)
 	
@@ -178,7 +178,7 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(0)
 
-	all_accelerate(Power_a, Power_b, 0.01, 50, 1)
+	all_accelerate(Power_a, Power_b, 0.01, 75, 1)
 	#Power_a.Accelerate(50, 0.01, 1)
 	#Power_b.Accelerate(50, 0.01, 1)
 	
@@ -197,7 +197,7 @@ def main():
         Motor3.set_direction(1)
         Motor4.set_direction(0)
 	
-	all_accelerate(Power_a, Power_b, 0.01, 50, 1)
+	all_accelerate(Power_a, Power_b, 0.01, 75, 1)
 	#Power_a.Accelerate(50, 0.01, 1)
 	#Power_b.Accelerate(50, 0.01, 1)
 	
