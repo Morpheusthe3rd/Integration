@@ -4,12 +4,27 @@ from motordrivers_mk2 import Motor
 from motordrivers_mk2 import PWM
 from marvelmind import MarvelmindHedge
 import sys
-import Fundamentals
+import logging
+import datetime
 
 #This file plans to take the input from the Marvelmind beacons and the interpreter, and act on the movement recommendations from that
-#interpreter. 
+#interpreter. This iteration assumes clear paths.
 
 #Assume that the robot is properly oriented
+
+logging.basicConfig(filename='Navandmotion.log', level=logging.DEBUG) 
+logging.info('Logging file begin. Date of most recent run: %s', datetime.datetime.now())
+
+logging.info('Imported packages:')
+logging.info('		RPi.GPIO as IO')
+logging.info('		time')
+logging.info('		datetime')
+logging.info('		logging')
+logging.info('          from navigation_drivers_mm_interpreter_mk1 import hedge_Positions')
+logging.info('          from motordrivers_mk2 import Motor')
+logging.info('          from motordrivers_mk2 import PWM')
+logging.info('          from marvelmind import MarvelmindHedge')
+logging.info('          sys')
 
 def main():
         
@@ -19,9 +34,9 @@ def main():
 
         
         #Motor 1 pins (assumed front right)
-        Motor1 = Motor(17, 27)
-        Motor1.front = True
-        Motor1.right = True
+        Motor3 = Motor(17, 27)
+        Motor3.front = True
+        Motor3.right = True
         
         #Motor 2 pins (assumed back right)
         Motor2 = Motor(22,23)
@@ -29,14 +44,14 @@ def main():
         Motor2.back = True
         
         #Motor 3 pins (assumed front left)
-        Motor3 = Motor(24,25)
-        Motor3.left = True
-        Motor3.front = True
+        Motor4 = Motor(24,25)
+        Motor4.left = True
+        Motor4.front = True
         
         #Motor 4 pins (assumed back left)
-        Motor4 = Motor(5,6)
-        Motor4.left = True
-        Motor4.back = True
+        Motor1 = Motor(5,6)
+        Motor1.left = True
+        Motor1.back = True
         
         #Current direction flags. These will determine wether or not the robot needs to decelerate before changing directions
         Left_dir_flag = False
@@ -45,8 +60,8 @@ def main():
         Front_dir_flag = False
         
         #PWM wave setup
-        PWM_a = PWM(18,100)
-        PWM_b = PWM(13,100)
+        Power_a = PWM(18,100)
+        Power_b = PWM(13,100)
         
         
         while True:
