@@ -150,6 +150,7 @@ def main():
 	#Power_b.Accelerate(0, 0.01, -1)
 	
 	
+
 	print('End operation 1.')
 
 	#Operation 2: all motors backwards, accelerate, 1 sec pause, decelerate
@@ -158,6 +159,7 @@ def main():
         Motor2.set_direction(1)
         Motor3.set_direction(1)
         Motor4.set_direction(1)
+
 	
 	all_accelerate(Power_a, Power_b, 0.01, 75, 1)
 	#Power_a.Accelerate(50, 0.01, 1)
@@ -168,6 +170,7 @@ def main():
 	all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 	#Power_a.Accelerate(0, 0.01, -1)
 	#Power_b.Accelerate(0, 0.01, -1)
+
 	print('End operation 2.')
 
 	#Operation 3: Tank turn. Left forward, right back, accelerate, 1 sec pause,
@@ -178,6 +181,7 @@ def main():
         Motor3.set_direction(0)
         Motor4.set_direction(0)
 
+
 	all_accelerate(Power_a, Power_b, 0.01, 75, 1)
 	#Power_a.Accelerate(50, 0.01, 1)
 	#Power_b.Accelerate(50, 0.01, 1)
@@ -187,15 +191,16 @@ def main():
 	all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 	#Power_a.Accelerate(0, 0.01, -1)
 	#Power_b.Accelerate(0, 0.01, -1)
+
 	print('End operation 3.')
 	
 	#Operation 4: Crab. Front backwards, back forwards, accelerate, 1 sec pause,
 	#decelerate
 	print('Start operation 4, front right back left backwards, back right front left frontwards, accelerate, pause, decelerate')
-        Motor1.set_direction(0)
-        Motor2.set_direction(1)
-        Motor3.set_direction(1)
-        Motor4.set_direction(0)
+  Motor1.set_direction(0)
+  Motor2.set_direction(1)
+  Motor3.set_direction(1)
+  Motor4.set_direction(0)
 	
 	all_accelerate(Power_a, Power_b, 0.01, 75, 1)
 	#Power_a.Accelerate(50, 0.01, 1)
@@ -206,6 +211,7 @@ def main():
 	all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 	#Power_a.Accelerate(0, 0.01, -1)
 	#Power_b.Accelerate(0, 0.01, -1)
+
 	print('End operation 4.')
 
 	#Operation 5: All motors stop

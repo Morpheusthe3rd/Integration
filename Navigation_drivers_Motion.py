@@ -16,6 +16,7 @@ def main():
         hedge = MarvelmindHedge(tty = "/dev/ttyACM0",adr=9, debug=False)
         hedge.start()
         My_hedge = hedge_Positions()
+
         
         #Motor 1 pins (assumed front right)
         Motor1 = Motor(17, 27)
