@@ -75,7 +75,7 @@ class PWM: #This class defines the data and functions surrounding the PWM contro
 		for i in range (self.Current_duty_cycle, final_duty_cycle, direction):
 			self.MotorPWM.ChangeDutyCycle(i)
 			time.sleep(interval)
-			logging.debug('PWM suty-cycle: %f', i)
+			logging.debug('PWM duty-cycle: %f', i)
 		self.Current_duty_cycle = final_duty_cycle
 
 
@@ -147,8 +147,8 @@ def main():
 	
 	time.sleep(2)
 	
-	Power_a.Accelerate(50, 0.01, -1)
-	Power_b.Accelerate(50, 0.01, -1)
+	Power_a.Accelerate(0, 0.01, -1)
+	Power_b.Accelerate(0, 0.01, -1)
 	
 	
 	print('End operation 1.')
@@ -165,8 +165,8 @@ def main():
 	
 	time.sleep(2)
 	
-	Power_a.Accelerate(50, 0.01, -1)
-	Power_b.Accelerate(50, 0.01, -1)
+	Power_a.Accelerate(0, 0.01, -1)
+	Power_b.Accelerate(0, 0.01, -1)
 	print('End operation 2.')
 
 	#Operation 3: Tank turn. Left forward, right back, accelerate, 1 sec pause,
@@ -182,8 +182,8 @@ def main():
 	
 	time.sleep(2)
 	
-	Power_a.Accelerate(50, 0.01, -1)
-	Power_b.Accelerate(50, 0.01, -1)
+	Power_a.Accelerate(0, 0.01, -1)
+	Power_b.Accelerate(0, 0.01, -1)
 	print('End operation 3.')
 	
 	#Operation 4: Crab. Front backwards, back forwards, accelerate, 1 sec pause,
@@ -199,8 +199,8 @@ def main():
 	
 	time.sleep(2)
 	
-	Power_a.Accelerate(50, 0.01, -1)
-	Power_b.Accelerate(50, 0.01, -1)
+	Power_a.Accelerate(0, 0.01, -1)
+	Power_b.Accelerate(0, 0.01, -1)
 	print('End operation 4.')
 
 	#Operation 5: All motors stop
