@@ -116,8 +116,8 @@ def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
 		PWM1.MotorPWM.ChangeDutyCycle(i)
 		PWM2.MotorPWM.ChangeDutyCycle(i)
 		time.sleep(interval)
-	PWM1.Curent_duty_cycle = Final_duty
-	PWM2.Curent_duty_cycle = Final_duty
+	PWM1.Curent_duty_cycle = final_duty
+	PWM2.Curent_duty_cycle = final_duty
 	
 def All_stop():
 	IO.output(17,IO.LOW)
