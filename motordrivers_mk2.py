@@ -95,32 +95,20 @@ Motor1 = Motor(5,6)
 Power_a = PWM(18,100)
 Power_b = PWM(13,100)
 
-#PWM test-
-#This function allows testing of a single PWM. The signal should
-#increase to 100% Duty-cycle, then decrease. The full process should
-#complete in 2 seconds
-def PWM_a_test():
-
-	print('Start PWM_a test')
-	PWM_a.MotorPWM.start(0) #Starts PWM_a with a 0% duty cycle
-	PWM_a.Accelerate(100, 0.01, 1)
-	PWM_a.Accelerate(0, 0.01, -1)
-	print('End PWM_a test')
-
-#This function should be appended to the end of all programs operating motors
-#It sets all of the motor direction controls to stationary
-
 def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
 	starting_duty = (PWM1.Current_duty_cycle + PWM2.Current_duty_cycle)/2
 	print(starting_duty)
 	for i in range (starting_duty, final_duty, direction):
-		print(i)
 		PWM1.MotorPWM.ChangeDutyCycle(i)
 		PWM2.MotorPWM.ChangeDutyCycle(i)
 		time.sleep(interval)
 	PWM1.Curent_duty_cycle = final_duty
 	PWM2.Curent_duty_cycle = final_duty
-	
+	print('Final duty: %f', PWM1.Current_duty_cycle)
+
+#This function should be appended to the end of all programs operating motors
+#It sets all of the motor direction controls to stationary
+
 def All_stop():
 	IO.output(17,IO.LOW)
 	IO.output(27,IO.LOW)
