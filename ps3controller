@@ -1,9 +1,11 @@
-axisUpDown = 1                          # Joystick axis to read for up / down position
-axisUpDownInverted = False              # Set this to True if up and down appear to be swapped
-axisLeftRight = 3                       # Joystick axis to read for left / right position
-axisLeftRightInverted = False           # Set this to True if left and right appear to be swapped
-interval = 0.1                          # Time between keyboard updates in seconds, smaller responds faster but uses more processor time
+import RPi.GPIO as IO
+import time
+import datetime
+import logging
+from motordrivers_mk2 import Motor
+from motordrivers_mk2 import PWM
 
+#From Online
 # Setup pygame and key states
 global hadEvent
 global moveUp
@@ -23,6 +25,97 @@ joystick = pygame.joystick.Joystick(0)
 joystick.init()
 screen = pygame.display.set_mode([300,300])
 pygame.display.set_caption("JoyBorg - Press [ESC] to quit")
+# From Online
+
+
+logging.basicConfig(filename='RC_TEST.log', level=logging.DEBUG) 
+logging.info('Logging file begin. Date of most recent run: %s', datetime.datetime.now())
+
+logging.info('Imported packages:')
+logging.info('		RPi.GPIO as IO')
+logging.info('		time')
+logging.info('		datetime')
+logging.info('		logging')
+
+#This file is the preliminary interface test for the MIT AI2 app which will control our robot. This model will simply print the text 
+#which comes from the App
+
+#For now I will assume that the keyboard will be controlling the movement, using W, A, S, D
+
+#Motor 3 pins (assumed front right)
+Motor3 = Motor(17, 27)
+
+#Motor 2 pins (assumed back right)
+Motor2 = Motor(22,23)
+
+#Motor 4 pins (assumed front left)
+Motor4 = Motor(24,25)
+
+#Motor 1 pins (assumed back left)
+Motor1 = Motor(5,6)
+
+#PWM wave setup
+Power_a = PWM(18,100)
+Power_b = PWM(13,100)
+
+def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
+	starting_duty = (PWM1.Current_duty_cycle + PWM2.Current_duty_cycle)/2
+	for i in range (starting_duty, final_duty, direction):
+		PWM1.MotorPWM.ChangeDutyCycle(i)
+		PWM2.MotorPWM.ChangeDutyCycle(i)
+		time.sleep(interval)
+	PWM1.Current_duty_cycle = final_duty
+	PWM2.Current_duty_cycle = final_duty
+
+main():
+        
+        while(1):
+                try:
+                        #----------------TAKE INPUT----------------#
+                    PygameHandler(pygame.event.get())
+                    if hadEvent:
+                    # Keys have changed, generate the command list based on keys
+                        hadEvent = False
+                        if moveQuit:
+                            break
+                        elif moveLeft:
+                            Motor3.set_direction(1)
+                            Motor2.set_direction(0)
+                            Motor4.set_direction(0)
+                            Motor1.set_direction(1)
+                        elif moveRight:
+                            Motor3.set_direction(0)
+                            Motor2.set_direction(1)
+                            Motor4.set_direction(1)
+                            Motor1.set_direction(0)
+                        elif moveUp:
+                            Motor3.set_direction(1)
+                            Motor2.set_direction(1)
+                            Motor4.set_direction(1)
+                            Motor1.set_direction(1)        
+                        elif moveDown:
+                            Motor3.set_direction(0)
+                            Motor2.set_direction(0)
+                            Motor4.set_direction(0)
+                            Motor1.set_direction(0)
+                        GPIO.output(leftDrive, leftState)
+                        GPIO.output(rightDrive, rightState)
+                    # Wait for the interval period
+                    time.sleep(interval)
+                except KeyboardInterupt:
+                        logging.warning('KEYBOARD INTERRUPT. PROGRAM EXITING.')
+                        sys.exit()
+                        break
+                        
+
+
+
+axisUpDown = 1                          # Joystick axis to read for up / down position
+axisUpDownInverted = False              # Set this to True if up and down appear to be swapped
+axisLeftRight = 3                       # Joystick axis to read for left / right position
+axisLeftRightInverted = False           # Set this to True if left and right appear to be swapped
+interval = 0.1                          # Time between keyboard updates in seconds, smaller responds faster but uses more processor time
+
 
 # Function to handle pygame events
 def PygameHandler(events):
@@ -79,3 +172,6 @@ def PygameHandler(events):
             else:
                 moveLeft = False
                 moveRight = False
+                
+main()
+
