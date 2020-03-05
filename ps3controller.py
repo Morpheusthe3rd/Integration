@@ -198,7 +198,8 @@ def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
 	PWM2.Current_duty_cycle = final_duty
 
 def main():
-        
+        global hadEvent
+	hadEvent = False
         while(1):
                 try:
                         #----------------TAKE INPUT----------------#
