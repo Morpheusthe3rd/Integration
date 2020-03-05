@@ -4,6 +4,7 @@ import datetime
 import logging
 import pygame
 import math
+import sys
 
 #From Online
 # Setup pygame and key states
@@ -196,6 +197,9 @@ Motor1 = Motor(5,6)
 #PWM wave setup
 Power_a = PWM(18,100)
 Power_b = PWM(13,100)
+
+Power_a.PWM.start()
+Power_b.PWM.start()
 
 def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
 	starting_duty = (PWM1.Current_duty_cycle + PWM2.Current_duty_cycle)/2
