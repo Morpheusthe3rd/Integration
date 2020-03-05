@@ -196,7 +196,7 @@ def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
 	PWM1.Current_duty_cycle = final_duty
 	PWM2.Current_duty_cycle = final_duty
 
-main():
+def main():
         
         while(1):
                 try:
