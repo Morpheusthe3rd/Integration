@@ -73,6 +73,7 @@ def PygameHandler(events):
 		upDown = abs(upDown)
 		upDown = 100*upDown
 		upDown = math.floor(upDown)
+		logging.WARNING(upDown)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown, -1)	
 		moveUp = True
                 moveDown = False
@@ -80,6 +81,7 @@ def PygameHandler(events):
 		upDown = abs(upDown)
 		upDown = 100*upDown
 		upDown = math.floor(upDown)
+		logging.WARNING(upDown)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
                 moveUp = False
                 moveDown = True
