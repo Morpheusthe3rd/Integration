@@ -198,8 +198,8 @@ Motor1 = Motor(5,6)
 Power_a = PWM(18,100)
 Power_b = PWM(13,100)
 
-Power_a.PWM.start()
-Power_b.PWM.start()
+Power_a.MotorPWM.start()
+Power_b.MotorPWM.start()
 
 def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
 	starting_duty = (PWM1.Current_duty_cycle + PWM2.Current_duty_cycle)/2
