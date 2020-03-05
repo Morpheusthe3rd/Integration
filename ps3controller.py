@@ -2,8 +2,6 @@ import RPi.GPIO as IO
 import time
 import datetime
 import logging
-from motordrivers_mk2 import Motor
-from motordrivers_mk2 import PWM
 
 #From Online
 # Setup pygame and key states
@@ -41,6 +39,73 @@ logging.info('		logging')
 #which comes from the App
 
 #For now I will assume that the keyboard will be controlling the movement, using W, A, S, D
+
+IO.setwarnings(False)
+IO.setmode(IO.BCM)
+logging.info('IO.setwarnings: False')
+logging.info('IO.setmode: IO.BCM')
+
+class Motor: #This class defines the motor direction pins and their assumed position on the robot. 
+	def __init__(self, PIN_1, PIN_2):
+		
+		logging.debug('A motor has been initialized. It will be assumed to have no fixed position on the Robot until otherwise')
+		logging.debug('assigned. The Motor class has 1 function, set_direction. This function allows the direction of motor movement')
+		logging.debug('to be assigned. It alternates which GPIO pin has high voltage, thereby controling the direction. If both are')
+		logging.debug('set to high, there will be no motion from the motor. It is assumed that the first Pin entered controlls forward')
+		logging.debug('motion, and the second controls backward.')
+		
+		self.left = False
+		self.right = False
+		self.front = False
+		self.back = False
+		
+		self.forward_pin = PIN_1
+		self.backward_pin = PIN_2
+		
+		IO.setup(PIN_1,IO.OUT)
+		IO.setup(PIN_2,IO.OUT)
+		
+	def set_direction(self, decision_bit):
+		if decision_bit == 0:
+			IO.output(self.forward_pin, IO.HIGH)
+			IO.output(self.backward_pin, IO.LOW)
+			logging.info('Direction Forward')
+		elif decision_bit == 1:
+			IO.output(self.forward_pin, IO.LOW)
+			IO.output(self.backward_pin, IO.HIGH)
+			logging.info('Direction Backward')
+		else: 
+			logging.warning("Exception. Unexpected 'decision_bit' value.")
+class PWM: #This class defines the data and functions surrounding the PWM controls
+	def __init__(self, PIN_1, Frequency):
+		
+		logging.debug('A PWM has just be instantiated. This class governs acceleration of the motors via a PWM signal. It has 1')
+		logging.debug('function, Accelerate. This covers positive and negative acceleration, via a variable for loop.')
+		
+		self.output_Pin = PIN_1
+		self.PWMFrequency = Frequency
+		self.Current_duty_cycle = 0
+		
+		IO.setup(self.output_Pin, IO.OUT)
+		self.MotorPWM = IO.PWM(self.output_Pin, self.PWMFrequency) #This section may not work as intended, look here first for errors.
+		
+	def Accelerate(self, final_duty_cycle, interval, direction):
+	#The acceleration function handles both increases and decreases in duty cycle. This is possible through the range function, 
+	#which allows the direction of the range to be set: 1 for upwards, -1 for reverse. The function iterates from the current
+	#duty cycle to the final duty cycle, in the specified direction. It then sets the new current duty cycle to the desired one.
+		logging.debug('Debug: accelerating')
+		logging.debug('Final Duty Cycle: ') 
+		logging.debug(final_duty_cycle)
+		logging.debug('Interval: ' )
+		logging.debug(interval)
+		logging.debug('Direction: ')
+		logging.debug(direction)
+		for i in range (self.Current_duty_cycle, final_duty_cycle, direction):
+			self.MotorPWM.ChangeDutyCycle(i)
+			time.sleep(interval)
+			logging.debug('PWM duty-cycle: %f', i)
+		self.Current_duty_cycle = final_duty_cycle
+
 
 #Motor 3 pins (assumed front right)
 Motor3 = Motor(17, 27)
