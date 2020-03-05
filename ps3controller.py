@@ -15,6 +15,7 @@ global moveLeft
 global moveRight
 global moveQuit
 global upDown
+upDown = 0
 hadEvent = True
 moveUp = False
 moveDown = False
@@ -77,7 +78,7 @@ def PygameHandler(events):
 		if sign(upDown) != sign(upDown_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 		upDown = abs(upDown)
-		upDown = 100*upDown
+		upDown = 50*upDown
 		upDown = int(upDown)
 		print(upDown)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)	
@@ -87,7 +88,7 @@ def PygameHandler(events):
 		if sign(upDown) != sign(upDown_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 		upDown = abs(upDown)
-		upDown = 100*upDown
+		upDown = 50*upDown
 		upDown = int(upDown)
 		print(upDown)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
