@@ -72,7 +72,7 @@ def PygameHandler(events):
             if upDown < -0.1:
 		upDown = abs(upDown)
 		upDown = 100*upDown
-		upDown = math.floor(upDown)
+		upDown = int(upDown)
 		logging.WARNING(upDown)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown, -1)	
 		moveUp = True
@@ -80,7 +80,7 @@ def PygameHandler(events):
             elif upDown > 0.1:
 		upDown = abs(upDown)
 		upDown = 100*upDown
-		upDown = math.floor(upDown)
+		upDown = int(upDown)
 		logging.WARNING(upDown)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
                 moveUp = False
