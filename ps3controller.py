@@ -78,11 +78,11 @@ def PygameHandler(events):
             if upDown < -0.1:
 		if numpy.sign(upDown) != numpy.sign(upDown_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
-		upDown = abs(upDown)
-		upDown = 50*upDown
-		upDown = int(upDown)
-		print(upDown)
-	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)	
+		upDown_2 = abs(upDown)
+		upDown_2 = 50*upDown_2
+		upDown_2 = int(upDown_2)
+		print(upDown_2)
+	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)	
 		moveUp = True
                 moveDown = False
             elif upDown > 0.1:
@@ -253,7 +253,7 @@ def main():
                             Motor4.set_direction(0)
                             Motor1.set_direction(0)
                     # Wait for the interval period
-                    time.sleep(interval)
+                    time.sleep(0.01)
                 except KeyboardInterrupt:
                         logging.warning('KEYBOARD INTERRUPT. PROGRAM EXITING.')
                         sys.exit()
