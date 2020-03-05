@@ -163,11 +163,9 @@ main():
                             Motor2.set_direction(0)
                             Motor4.set_direction(0)
                             Motor1.set_direction(0)
-                        GPIO.output(leftDrive, leftState)
-                        GPIO.output(rightDrive, rightState)
                     # Wait for the interval period
                     time.sleep(interval)
-                except KeyboardInterupt:
+                except KeyboardInterrupt:
                         logging.warning('KEYBOARD INTERRUPT. PROGRAM EXITING.')
                         sys.exit()
                         break
@@ -219,11 +217,11 @@ def PygameHandler(events):
                 leftRight = -leftRight
             # Determine Up / Down values
             if upDown < -0.1:
-	    	all_accelerate(Power_a, Power_b, 0.01, 50*upDown, -1)	
+	    	all_accelerate(Power_a, Power_b, 0.01, upDown, -1)	
 		moveUp = True
                 moveDown = False
             elif upDown > 0.1:
-	    	all_accelerate(Power_a, Power_b, 0.01, 50*upDown, 1)
+	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
                 moveUp = False
                 moveDown = True
             else:
