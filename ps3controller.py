@@ -2,6 +2,7 @@ import RPi.GPIO as IO
 import time
 import datetime
 import logging
+import pygame
 
 #From Online
 # Setup pygame and key states
