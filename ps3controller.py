@@ -25,6 +25,70 @@ screen = pygame.display.set_mode([300,300])
 pygame.display.set_caption("JoyBorg - Press [ESC] to quit")
 # From Online
 
+axisUpDown = 1                          # Joystick axis to read for up / down position
+axisUpDownInverted = False              # Set this to True if up and down appear to be swapped
+axisLeftRight = 3                       # Joystick axis to read for left / right position
+axisLeftRightInverted = False           # Set this to True if left and right appear to be swapped
+interval = 0.1                          # Time between keyboard updates in seconds, smaller responds faster but uses more processor time
+
+# Function to handle pygame events
+def PygameHandler(events):
+    # Variables accessible outside this function
+    global hadEvent
+    global moveUp
+    global moveDown
+    global moveLeft
+    global moveRight
+    global moveQuit
+    # Handle each event individually
+    for event in events:
+        if event.type == pygame.QUIT:
+            # User exit
+            hadEvent = True
+            moveQuit = True
+        elif event.type == pygame.KEYDOWN:
+            # A key has been pressed, see if it is one we want
+            hadEvent = True
+            if event.key == pygame.K_ESCAPE:
+                moveQuit = True
+        elif event.type == pygame.KEYUP:
+            # A key has been released, see if it is one we want
+            hadEvent = True
+            if event.key == pygame.K_ESCAPE:
+                moveQuit = False
+        elif event.type == pygame.JOYAXISMOTION:
+            # A joystick has been moved, read axis positions (-1 to +1)
+            hadEvent = True
+            upDown = joystick.get_axis(axisUpDown)
+            leftRight = joystick.get_axis(axisLeftRight)
+            # Invert any axes which are incorrect
+            if axisUpDownInverted:
+                upDown = -upDown
+            if axisLeftRightInverted:
+                leftRight = -leftRight
+            # Determine Up / Down values
+            if upDown < -0.1:
+	    	all_accelerate(Power_a, Power_b, 0.01, upDown, -1)	
+		moveUp = True
+                moveDown = False
+            elif upDown > 0.1:
+	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
+                moveUp = False
+                moveDown = True
+            else:
+                moveUp = False
+                moveDown = False
+            # Determine Left / Right values
+            if leftRight < -0.1:
+                moveLeft = True
+                moveRight = False
+            elif leftRight > 0.1:
+                moveLeft = False
+                moveRight = True
+            else:
+                moveLeft = False
+                moveRight = False
+                
 
 logging.basicConfig(filename='RC_TEST.log', level=logging.DEBUG) 
 logging.info('Logging file begin. Date of most recent run: %s', datetime.datetime.now())
@@ -172,71 +236,5 @@ main():
                         
 
 
-
-axisUpDown = 1                          # Joystick axis to read for up / down position
-axisUpDownInverted = False              # Set this to True if up and down appear to be swapped
-axisLeftRight = 3                       # Joystick axis to read for left / right position
-axisLeftRightInverted = False           # Set this to True if left and right appear to be swapped
-interval = 0.1                          # Time between keyboard updates in seconds, smaller responds faster but uses more processor time
-
-
-# Function to handle pygame events
-def PygameHandler(events):
-    # Variables accessible outside this function
-    global hadEvent
-    global moveUp
-    global moveDown
-    global moveLeft
-    global moveRight
-    global moveQuit
-    # Handle each event individually
-    for event in events:
-        if event.type == pygame.QUIT:
-            # User exit
-            hadEvent = True
-            moveQuit = True
-        elif event.type == pygame.KEYDOWN:
-            # A key has been pressed, see if it is one we want
-            hadEvent = True
-            if event.key == pygame.K_ESCAPE:
-                moveQuit = True
-        elif event.type == pygame.KEYUP:
-            # A key has been released, see if it is one we want
-            hadEvent = True
-            if event.key == pygame.K_ESCAPE:
-                moveQuit = False
-        elif event.type == pygame.JOYAXISMOTION:
-            # A joystick has been moved, read axis positions (-1 to +1)
-            hadEvent = True
-            upDown = joystick.get_axis(axisUpDown)
-            leftRight = joystick.get_axis(axisLeftRight)
-            # Invert any axes which are incorrect
-            if axisUpDownInverted:
-                upDown = -upDown
-            if axisLeftRightInverted:
-                leftRight = -leftRight
-            # Determine Up / Down values
-            if upDown < -0.1:
-	    	all_accelerate(Power_a, Power_b, 0.01, upDown, -1)	
-		moveUp = True
-                moveDown = False
-            elif upDown > 0.1:
-	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
-                moveUp = False
-                moveDown = True
-            else:
-                moveUp = False
-                moveDown = False
-            # Determine Left / Right values
-            if leftRight < -0.1:
-                moveLeft = True
-                moveRight = False
-            elif leftRight > 0.1:
-                moveLeft = False
-                moveRight = True
-            else:
-                moveLeft = False
-                moveRight = False
-                
 main()
 
