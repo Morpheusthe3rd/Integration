@@ -112,9 +112,7 @@ def PygameHandler(events):
             elif upDown > 0.1:
 		if numpy.sign(upDown) != numpy.sign(upDown_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
-		upDown = abs(upDown)
-		upDown = 75*upDown
-		upDown = int(upDown)
+
 		print(upDown)
 		positiveVelocity = True
 		negativeVelocity = False
