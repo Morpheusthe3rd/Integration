@@ -257,44 +257,44 @@ def main():
                         if moveQuit:
                             break
                         elif moveLeftRight:
-							if positiveVelocity #right
-                            	Motor3.set_direction(1)
-                            	Motor2.set_direction(0)
-                            	Motor4.set_direction(0)
-                            	Motor1.set_direction(1)
+				if positiveVelocity: #right
+                            		Motor3.set_direction(1)
+                            		Motor2.set_direction(0)
+                            		Motor4.set_direction(0)
+                            		Motor1.set_direction(1)
                         	elif negativeVelocity: #left
-                            	Motor3.set_direction(0)
-                            	Motor2.set_direction(1)
-                            	Motor4.set_direction(1)
-                            	Motor1.set_direction(0)
-							else:
-								loggin.WARNING('UNEXPECTED STATE: moveLeftRight active, with neither pos nor neg vel.')
+                            		Motor3.set_direction(0)
+                            		Motor2.set_direction(1)
+                            		Motor4.set_direction(1)
+                            		Motor1.set_direction(0)
+				else:
+					loggin.WARNING('UNEXPECTED STATE: moveLeftRight active, with neither pos nor neg vel.')
                         elif moveUpDown:
-                            if positiveVelocity: #forward
-								Motor3.set_direction(1)
-                            	Motor2.set_direction(1)
-                            	Motor4.set_direction(1)
-                            	Motor1.set_direction(1)        
+                        	if positiveVelocity: #forward
+					Motor3.set_direction(1)
+                            		Motor2.set_direction(1)
+                            		Motor4.set_direction(1)
+                            		Motor1.set_direction(1)        
                         	elif negativeVelocity: #backward
-                            	Motor3.set_direction(0)
-                            	Motor2.set_direction(0)
-                            	Motor4.set_direction(0)
-                            	Motor1.set_direction(0)
-							else:
-								loggin.WARNING('UNEXPECTED STATE: moveUpDown active, with neither pos nor neg vel.')
-						elif turnLeftRight:
-							if positiveVelocity: #turn Right
-								Motor1.set_direction(0)
-								Motor2.set_direction(0)
-								Motor3.set_direction(1)
-								Motor4.set_direction(1)
-							elif negativeVelocity: #turn Left
-								Motor1.set_direction(1)
-								Motor2.set_direction(1)
-								Motor3.set_direction(0)
-								Motor4.set_direction(0)
-							else:
-								loggin.WARNING('UNEXPECTED STATE: turnLeftRight active, with neither pos nor neg vel.')
+                            		Motor3.set_direction(0)
+                            		Motor2.set_direction(0)
+                            		Motor4.set_direction(0)
+                            		Motor1.set_direction(0)
+				else:
+					loggin.WARNING('UNEXPECTED STATE: moveUpDown active, with neither pos nor neg vel.')
+			elif turnLeftRight:
+				if positiveVelocity: #turn Right
+					Motor1.set_direction(0)
+					Motor2.set_direction(0)
+					Motor3.set_direction(1)
+					Motor4.set_direction(1)
+				elif negativeVelocity: #turn Left
+					Motor1.set_direction(1)
+					Motor2.set_direction(1)
+					Motor3.set_direction(0)
+					Motor4.set_direction(0)
+				else:
+					loggin.WARNING('UNEXPECTED STATE: turnLeftRight active, with neither pos nor neg vel.')
 													 
                     # Wait for the interval period
                     time.sleep(0.01)
