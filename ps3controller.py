@@ -130,14 +130,14 @@ def PygameHandler(events):
             #moveLeft = False
             #moveRight = False	
 	elif event.type == pygame.JOYBUTTONDOWN:
-	    if joystick.get_button(1):
+		if joystick.get_button(1):
 			#move forward/back
 			logging.debug('Toggled for moving Forwards and Backwards')
 			moveUpDown = True
 			moveLeftRight = False
 			turnLeftRight = False
-	    elif joystick.get_button(2):
-            #move left/right
+		elif joystick.get_button(2):
+            	#move left/right
 			logging.debug('Toggled for moving Right and Left')
 			moveUpDown = False
 			moveLeftRight = True
@@ -148,6 +148,10 @@ def PygameHandler(events):
 			moveUpDown = False
 			moveLeftRight = False
 			turnLeftRight = True
+		else:
+			moveUpDown = False
+			moveLeftRight = False
+			turnLeftRight = False
 
 #This file is the preliminary interface test for the MIT AI2 app which will control our robot. This model will simply print the text 
 #which comes from the App
