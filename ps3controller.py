@@ -129,7 +129,7 @@ def PygameHandler(events):
         #else:
             #moveLeft = False
             #moveRight = False	
-	elif: event.type == pygame.JOYBUTTONDOWN:
+	elif event.type == pygame.JOYBUTTONDOWN:
 	    if joystick.get_button(1):
 			#move forward/back
 			logging.debug('Toggled for moving Forwards and Backwards')
