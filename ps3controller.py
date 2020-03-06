@@ -153,12 +153,13 @@ def PygameHandler(events):
 			moveLeftRight = False
 			turnLeftRight = True
 		else:
-			one=1
+			print('no button')
 			#moveUpDown = False
 			#moveLeftRight = False
 			#turnLeftRight = False
 	else:
-		one=1
+		print('no event')
+			
 #This file is the preliminary interface test for the MIT AI2 app which will control our robot. This model will simply print the text 
 #which comes from the App
 
