@@ -120,13 +120,13 @@ def PygameHandler(events):
             #moveDown = False
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
         # Determine Left / Right values
-        if leftRight < -0.1:
+        #if leftRight < -0.1:
             #moveLeft = True
             #moveRight = False
-        elif leftRight > 0.1:
+        #elif leftRight > 0.1:
             #moveLeft = False
             #moveRight = True
-        else:
+        #else:
             #moveLeft = False
             #moveRight = False	
 	elif: event.type == pygame.JOYBUTTONDOWN:
