@@ -134,19 +134,22 @@ def PygameHandler(events):
             #moveLeft = False
             #moveRight = False	
 	elif event.type == pygame.JOYBUTTONDOWN:
-		if pygame.joystick.Joystick.get_button(14): #x button
+		Xbutton= joystick.get_button(14)
+		circlebutton = joystick.get_button(13)
+		triangle = joystick.get_button(12)
+		if Xbutton: #x button
 			#move forward/back
 			logging.debug('Toggled for moving Forwards and Backwards')
 			moveUpDown = True
 			moveLeftRight = False
 			turnLeftRight = False
-		elif pygame.joystick.Joystick.get_button(13): #circle
+		elif circlebutton: #circle
             	#move left/right
 			logging.debug('Toggled for moving Right and Left')
 			moveUpDown = False
 			moveLeftRight = True
 			turnLeftRight = False
-		elif pygame.joystick.Joystick.get_button(12): #triangle
+		elif triangle: #triangle
 			#turn left/right
 			logging.debug('Toggled for turning Right and Left')
 			moveUpDown = False
