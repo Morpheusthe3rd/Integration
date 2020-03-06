@@ -311,8 +311,8 @@ def main():
 					logging.warning('UNEXPECTED STATE: moveUpDown active, with neither pos nor neg vel.')
 			elif turnLeftRight:
 				if positiveVelocity: #turn Right
-					Motor1.set_direction(1)
-					Motor2.set_direction(0)
+					Motor1.set_direction(0)
+					Motor2.set_direction(1)
 					Motor3.set_direction(1)
 					Motor4.set_direction(0)
 					upDown = abs(upDown)
@@ -321,8 +321,8 @@ def main():
 					all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
 					logging.debug('pos vel left right turn')
 				elif negativeVelocity: #turn Left
-					Motor1.set_direction(0)
-					Motor2.set_direction(1)
+					Motor1.set_direction(1)
+					Motor2.set_direction(0)
 					Motor3.set_direction(0)
 					Motor4.set_direction(1)
 					upDown_2 = abs(upDown)
