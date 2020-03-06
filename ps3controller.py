@@ -7,21 +7,36 @@ import math
 import sys
 import numpy
 
+logging.basicConfig(filename='RC_TEST.log', level=logging.DEBUG) 
+logging.info('Logging file begin. Date of most recent run: %s', datetime.datetime.now())
+
+logging.info('Imported packages:')
+logging.info('		RPi.GPIO as IO')
+logging.info('		time')
+logging.info('		datetime')
+logging.info('		logging')
+logging.info('		pygame')
+logging.info('		math')
+logging.info('		sys')
+logging.info('		numpy')
+
 #From Online
 # Setup pygame and key states
 global hadEvent
-global moveUp
-global moveDown
-global moveLeft
-global moveRight
+global moveUpDown
+global moveLeftRight
+global turnLeftRight
+global positiveVelocity
+global negativeVelocity
 global moveQuit
 global upDown
 upDown = 0
 hadEvent = True
-moveUp = False
-moveDown = False
-moveLeft = False
-moveRight = False
+moveUpDown = False
+moveLeftRight = False
+turnLeftRight = False
+positiveVelocity = False
+negativeVelocity = False
 moveQuit = False
 pygame.init()
 pygame.joystick.init()
@@ -41,10 +56,9 @@ interval = 0.1                          # Time between keyboard updates in secon
 def PygameHandler(events):
     # Variables accessible outside this function
     global hadEvent
-    global moveUp
-    global moveDown
-    global moveLeft
-    global moveRight
+    global moveUpDown
+    global moveLeftRight
+    global turnLeftRight
     global moveQuit
     global upDown
     # Handle each event individually
@@ -66,7 +80,7 @@ def PygameHandler(events):
         elif event.type == pygame.JOYAXISMOTION:
             # A joystick has been moved, read axis positions (-1 to +1)
             hadEvent = True
-	    upDown_0 = upDown
+	   		upDown_0 = upDown
             upDown = joystick.get_axis(axisUpDown)
             leftRight = joystick.get_axis(axisLeftRight)
             # Invert any axes which are incorrect
@@ -75,50 +89,60 @@ def PygameHandler(events):
             if axisLeftRightInverted:
                 leftRight = -leftRight
             # Determine Up / Down values
-            if upDown < -0.1:
-		if numpy.sign(upDown) != numpy.sign(upDown_0):
-			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
-		upDown_2 = abs(upDown)
-		upDown_2 = 50*upDown_2
-		upDown_2 = int(upDown_2)
-		print(upDown_2)
-	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)	
-		moveUp = True
-                moveDown = False
-            elif upDown > 0.1:
-		if numpy.sign(upDown) != numpy.sign(upDown_0):
-			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
-		upDown = abs(upDown)
-		upDown = 50*upDown
-		upDown = int(upDown)
-		print(upDown)
+        if upDown < -0.1:
+			if numpy.sign(upDown) != numpy.sign(upDown_0):
+				all_accelerate(Power_a, Power_b, 0.01, 0, -1)
+			upDown_2 = abs(upDown)
+			upDown_2 = 50*upDown_2
+			upDown_2 = int(upDown_2)
+			print(upDown_2)
+	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
+			positiveVelocity = True
+			negativeVelocity = False
+			#moveUp = True
+           	#moveDown = False
+        elif upDown > 0.1:
+			if numpy.sign(upDown) != numpy.sign(upDown_0):
+				all_accelerate(Power_a, Power_b, 0.01, 0, -1)
+			upDown = abs(upDown)
+			upDown = 50*upDown
+			upDown = int(upDown)
+			print(upDown)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
-                moveUp = False
-                moveDown = True
-            else:
-                moveUp = False
-                moveDown = False
-		all_accelerate(Power_a, Power_b, 0.01, 0, -1)
-            # Determine Left / Right values
-            if leftRight < -0.1:
-                moveLeft = True
-                moveRight = False
-            elif leftRight > 0.1:
-                moveLeft = False
-                moveRight = True
-            else:
-                moveLeft = False
-                moveRight = False
-                
-
-logging.basicConfig(filename='RC_TEST.log', level=logging.DEBUG) 
-logging.info('Logging file begin. Date of most recent run: %s', datetime.datetime.now())
-
-logging.info('Imported packages:')
-logging.info('		RPi.GPIO as IO')
-logging.info('		time')
-logging.info('		datetime')
-logging.info('		logging')
+			positiveVelocity = False
+			negativeVelocity = True
+                #moveUp = False
+                #moveDown = True
+        else:
+            #moveUp = False
+            #moveDown = False
+			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
+        # Determine Left / Right values
+        if leftRight < -0.1:
+            #moveLeft = True
+            #moveRight = False
+        elif leftRight > 0.1:
+            #moveLeft = False
+            #moveRight = True
+        else:
+            #moveLeft = False
+            #moveRight = False	
+	elif: event.type == pygame.JOYBUTTONDOWN:
+	    if joystick.get_button(1):
+			#move forward/back
+			moveUpDown = True
+			moveLeftRight = False
+			turnLeftRight = False
+	    elif joystick.get_button(2):
+            #move left/right
+			moveUpDown = False
+			moveLeftRight = True
+			turnLeftRight = False
+		elif joystick.get_button(7):
+			#turn left/right
+			moveUpDown = False
+			moveLeftRight = False
+			turnLeftRight = True
 
 #This file is the preliminary interface test for the MIT AI2 app which will control our robot. This model will simply print the text 
 #which comes from the App
@@ -132,12 +156,6 @@ logging.info('IO.setmode: IO.BCM')
 
 class Motor: #This class defines the motor direction pins and their assumed position on the robot. 
 	def __init__(self, PIN_1, PIN_2):
-		
-		logging.debug('A motor has been initialized. It will be assumed to have no fixed position on the Robot until otherwise')
-		logging.debug('assigned. The Motor class has 1 function, set_direction. This function allows the direction of motor movement')
-		logging.debug('to be assigned. It alternates which GPIO pin has high voltage, thereby controling the direction. If both are')
-		logging.debug('set to high, there will be no motion from the motor. It is assumed that the first Pin entered controlls forward')
-		logging.debug('motion, and the second controls backward.')
 		
 		self.left = False
 		self.right = False
@@ -163,10 +181,7 @@ class Motor: #This class defines the motor direction pins and their assumed posi
 			logging.warning("Exception. Unexpected 'decision_bit' value.")
 class PWM: #This class defines the data and functions surrounding the PWM controls
 	def __init__(self, PIN_1, Frequency):
-		
-		logging.debug('A PWM has just be instantiated. This class governs acceleration of the motors via a PWM signal. It has 1')
-		logging.debug('function, Accelerate. This covers positive and negative acceleration, via a variable for loop.')
-		
+				
 		self.output_Pin = PIN_1
 		self.PWMFrequency = Frequency
 		self.Current_duty_cycle = 0
@@ -232,31 +247,52 @@ def main():
                         hadEvent = False
                         if moveQuit:
                             break
-                        elif moveLeft:
-                            Motor3.set_direction(1)
-                            Motor2.set_direction(0)
-                            Motor4.set_direction(0)
-                            Motor1.set_direction(1)
-                        elif moveRight:
-                            Motor3.set_direction(0)
-                            Motor2.set_direction(1)
-                            Motor4.set_direction(1)
-                            Motor1.set_direction(0)
-                        elif moveUp:
-                            Motor3.set_direction(1)
-                            Motor2.set_direction(1)
-                            Motor4.set_direction(1)
-                            Motor1.set_direction(1)        
-                        elif moveDown:
-                            Motor3.set_direction(0)
-                            Motor2.set_direction(0)
-                            Motor4.set_direction(0)
-                            Motor1.set_direction(0)
+                        elif moveLeftRight:
+							if positiveVelocity #right
+                            	Motor3.set_direction(1)
+                            	Motor2.set_direction(0)
+                            	Motor4.set_direction(0)
+                            	Motor1.set_direction(1)
+                        	elif negativeVelocity: #left
+                            	Motor3.set_direction(0)
+                            	Motor2.set_direction(1)
+                            	Motor4.set_direction(1)
+                            	Motor1.set_direction(0)
+							else:
+								loggin.WARNING('UNEXPECTED STATE: moveLeftRight active, with neither pos nor neg vel.')
+                        elif moveUpDown:
+                            if positiveVelocity: #forward
+								Motor3.set_direction(1)
+                            	Motor2.set_direction(1)
+                            	Motor4.set_direction(1)
+                            	Motor1.set_direction(1)        
+                        	elif negativeVelocity: #backward
+                            	Motor3.set_direction(0)
+                            	Motor2.set_direction(0)
+                            	Motor4.set_direction(0)
+                            	Motor1.set_direction(0)
+							else:
+								loggin.WARNING('UNEXPECTED STATE: moveUpDown active, with neither pos nor neg vel.')
+						elif turnLeftRight:
+							if positiveVelocity: #turn Right
+								Motor1.set_direction(0)
+								Motor2.set_direction(0)
+								Motor3.set_direction(1)
+								Motor4.set_direction(1)
+							elif negativeVelocity: #turn Left
+								Motor1.set_direction(1)
+								Motor2.set_direction(1)
+								Motor3.set_direction(0)
+								Motor4.set_direction(0)
+							else:
+								loggin.WARNING('UNEXPECTED STATE: turnLeftRight active, with neither pos nor neg vel.')
+													 
                     # Wait for the interval period
                     time.sleep(0.01)
                 except KeyboardInterrupt:
                         logging.warning('KEYBOARD INTERRUPT. PROGRAM EXITING.')
                         sys.exit()
+						io.cleanup()
                         break
                         
 
