@@ -244,6 +244,7 @@ def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
 
 def main():
         global hadEvent
+	global upDown
 	hadEvent = False
         while(1):
                 try:
