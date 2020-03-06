@@ -35,7 +35,7 @@ pygame.display.set_caption("JoyBorg - Press [ESC] to quit")
 
 axisUpDown = 1                          # Joystick axis to read for up / down position
 axisUpDownInverted = False              # Set this to True if up and down appear to be swapped
-axisLeftRight = 3                       # Joystick axis to read for left / right position
+axisLeftRight = 2                       # Joystick axis to read for left / right position
 axisLeftRightInverted = False           # Set this to True if left and right appear to be swapped
 interval = 0.1                          # Time between keyboard updates in seconds, smaller responds faster but uses more processor time
 
@@ -112,7 +112,7 @@ def PygameHandler(events):
 	    	all_accelerate(Power_a, Power_b, 0.01, leftRight_2, 1)		
                 moveLeft = True
                 moveRight = False
-            elif (leftRight > 0.1 && upDown < 0.1 && upDown > -0.1):
+            elif leftRight > 0.1 :
 		if numpy.sign(leftRight) != numpy.sign(leftRight_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 		leftRight = abs(leftRight)
