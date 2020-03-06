@@ -16,7 +16,9 @@ global moveLeft
 global moveRight
 global moveQuit
 global upDown
+global leftRight
 upDown = 0
+leftRight = 0
 hadEvent = True
 moveUp = False
 moveDown = False
@@ -79,7 +81,7 @@ def PygameHandler(events):
 		if numpy.sign(upDown) != numpy.sign(upDown_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 		upDown_2 = abs(upDown)
-		upDown_2 = 50*upDown_2
+		upDown_2 = 75*upDown_2
 		upDown_2 = int(upDown_2)
 		print(upDown_2)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)	
@@ -89,7 +91,7 @@ def PygameHandler(events):
 		if numpy.sign(upDown) != numpy.sign(upDown_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 		upDown = abs(upDown)
-		upDown = 50*upDown
+		upDown = 75*upDown
 		upDown = int(upDown)
 		print(upDown)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
@@ -101,9 +103,23 @@ def PygameHandler(events):
 		all_accelerate(Power_a, Power_b, 0.01, 0, -1)
             # Determine Left / Right values
             if leftRight < -0.1:
+		if numpy.sign(leftRight) != numpy.sign(leftRight_0):
+			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
+		leftRight_2 = abs(leftRight)
+		leftRight_2 = 75*leftRight_2
+		leftRight_2 = int(leftRight_2)
+		print(leftRight_2)
+	    	all_accelerate(Power_a, Power_b, 0.01, leftRight_2, 1)		
                 moveLeft = True
                 moveRight = False
             elif leftRight > 0.1:
+		if numpy.sign(leftRight) != numpy.sign(leftRight_0):
+			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
+		leftRight = abs(leftRight)
+		leftRight = 75*leftRight
+		leftRight = int(leftRight)
+		print(leftRight_2)
+	    	all_accelerate(Power_a, Power_b, 0.01, leftRight, 1)	
                 moveLeft = False
                 moveRight = True
             else:
