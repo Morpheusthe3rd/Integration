@@ -49,6 +49,7 @@ def PygameHandler(events):
     global moveRight
     global moveQuit
     global upDown
+    global leftRight
     # Handle each event individually
     for event in events:
         if event.type == pygame.QUIT:
