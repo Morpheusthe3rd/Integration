@@ -112,7 +112,7 @@ def PygameHandler(events):
 	    	all_accelerate(Power_a, Power_b, 0.01, leftRight_2, 1)		
                 moveLeft = True
                 moveRight = False
-            elif leftRight > 0.1:
+            elif (leftRight > 0.1 && upDown < 0.1 && upDown > -0.1):
 		if numpy.sign(leftRight) != numpy.sign(leftRight_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 		leftRight = abs(leftRight)
