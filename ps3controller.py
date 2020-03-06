@@ -92,11 +92,10 @@ def PygameHandler(events):
             if upDown < -0.1:
 	    	if numpy.sign(upDown) != numpy.sign(upDown_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
-		upDown_2 = abs(upDown)
-		upDown_2 = 75*upDown_2
-		upDown_2 = int(upDown_2)
-		print(upDown_2)
-	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
+		upDown = abs(upDown)
+		upDown = 75*upDown
+		upDown = int(upDown)
+		print(upDown)
 		positiveVelocity = False
 		negativeVelocity = True
 		logging.debug('upDown < -0.1, toggling negative movement')
@@ -109,7 +108,6 @@ def PygameHandler(events):
 		upDown = 75*upDown
 		upDown = int(upDown)
 		print(upDown)
-	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
 		positiveVelocity = True
 		negativeVelocity = False
 		logging.debug('upDown > 0.1, toggling positive movement')
@@ -296,7 +294,8 @@ def main():
 				else:
 					logging.warning('UNEXPECTED STATE: turnLeftRight active, with neither pos nor neg vel.')
 													 
-                    # Wait for the interval period
+                    all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
+		    # Wait for the interval period
                     time.sleep(0.01)
                 except KeyboardInterrupt:
                         logging.warning('KEYBOARD INTERRUPT. PROGRAM EXITING.')
