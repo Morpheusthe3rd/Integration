@@ -97,8 +97,9 @@ def PygameHandler(events):
 			upDown_2 = int(upDown_2)
 			print(upDown_2)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
-			positiveVelocity = True
-			negativeVelocity = False
+			positiveVelocity = False
+			negativeVelocity = True
+			logging.debug('upDown < -0.1, toggling negative movement')
 			#moveUp = True
            	#moveDown = False
         elif upDown > 0.1:
@@ -109,8 +110,9 @@ def PygameHandler(events):
 			upDown = int(upDown)
 			print(upDown)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
-			positiveVelocity = False
-			negativeVelocity = True
+			positiveVelocity = True
+			negativeVelocity = False
+			logging.debug('upDown > 0.1, toggling positive movement')
                 #moveUp = False
                 #moveDown = True
         else:
@@ -130,16 +132,19 @@ def PygameHandler(events):
 	elif: event.type == pygame.JOYBUTTONDOWN:
 	    if joystick.get_button(1):
 			#move forward/back
+			logging.debug('Toggled for moving Forwards and Backwards')
 			moveUpDown = True
 			moveLeftRight = False
 			turnLeftRight = False
 	    elif joystick.get_button(2):
             #move left/right
+			logging.debug('Toggled for moving Right and Left')
 			moveUpDown = False
 			moveLeftRight = True
 			turnLeftRight = False
 		elif joystick.get_button(7):
 			#turn left/right
+			logging.debug('Toggled for turning Right and Left')
 			moveUpDown = False
 			moveLeftRight = False
 			turnLeftRight = True
