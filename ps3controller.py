@@ -89,36 +89,36 @@ def PygameHandler(events):
             if axisLeftRightInverted:
                 leftRight = -leftRight
             # Determine Up / Down values
-        	if upDown < -0.1:
-			if numpy.sign(upDown) != numpy.sign(upDown_0):
-				all_accelerate(Power_a, Power_b, 0.01, 0, -1)
-			upDown_2 = abs(upDown)
-			upDown_2 = 50*upDown_2
-			upDown_2 = int(upDown_2)
-			print(upDown_2)
-	    		all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
-			positiveVelocity = False
-			negativeVelocity = True
-			logging.debug('upDown < -0.1, toggling negative movement')
-			#moveUp = True
+            if upDown < -0.1:
+	    	if numpy.sign(upDown) != numpy.sign(upDown_0):
+			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
+		upDown_2 = abs(upDown)
+		upDown_2 = 75*upDown_2
+		upDown_2 = int(upDown_2)
+		print(upDown_2)
+	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
+		positiveVelocity = False
+		negativeVelocity = True
+		logging.debug('upDown < -0.1, toggling negative movement')
+		#moveUp = True
            	#moveDown = False
-        	elif upDown > 0.1:
-			if numpy.sign(upDown) != numpy.sign(upDown_0):
-				all_accelerate(Power_a, Power_b, 0.01, 0, -1)
-			upDown = abs(upDown)
-			upDown = 50*upDown
-			upDown = int(upDown)
-			print(upDown)
-	    		all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
-			positiveVelocity = True
-			negativeVelocity = False
-			logging.debug('upDown > 0.1, toggling positive movement')
+            elif upDown > 0.1:
+		if numpy.sign(upDown) != numpy.sign(upDown_0):
+			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
+		upDown = abs(upDown)
+		upDown = 75*upDown
+		upDown = int(upDown)
+		print(upDown)
+	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
+		positiveVelocity = True
+		negativeVelocity = False
+		logging.debug('upDown > 0.1, toggling positive movement')
                 #moveUp = False
                 #moveDown = True
-        	else:
-            		#moveUp = False
-            		#moveDown = False
-			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
+            else:
+            	#moveUp = False
+            	#moveDown = False
+		all_accelerate(Power_a, Power_b, 0.01, 0, -1)
         # Determine Left / Right values
         #if leftRight < -0.1:
             #moveLeft = True
