@@ -154,7 +154,7 @@ def PygameHandler(events):
 			moveLeftRight = False
 			turnLeftRight = True
 		else:
-			1=1
+			one=1
 			#moveUpDown = False
 			#moveLeftRight = False
 			#turnLeftRight = False
