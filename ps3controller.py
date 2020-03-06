@@ -80,7 +80,7 @@ def PygameHandler(events):
         elif event.type == pygame.JOYAXISMOTION:
             # A joystick has been moved, read axis positions (-1 to +1)
             hadEvent = True
-			upDown_0 = upDown
+	    upDown_0 = upDown
             upDown = joystick.get_axis(axisUpDown)
             leftRight = joystick.get_axis(axisLeftRight)
             # Invert any axes which are incorrect
