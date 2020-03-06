@@ -106,7 +106,7 @@ def PygameHandler(events):
 	    	
 		positiveVelocity = False
 		negativeVelocity = True
-		logging.debug('upDown < -0.1, toggling negative movement')
+		#logging.debug('upDown < -0.1, toggling negative movement')
 		#moveUp = True
            	#moveDown = False
             elif upDown > 0.1:
@@ -116,7 +116,7 @@ def PygameHandler(events):
 		print(upDown)
 		positiveVelocity = True
 		negativeVelocity = False
-		logging.debug('upDown > 0.1, toggling positive movement')
+		#logging.debug('upDown > 0.1, toggling positive movement')
                 #moveUp = False
                 #moveDown = True
             else:
