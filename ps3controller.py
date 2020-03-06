@@ -15,6 +15,8 @@ global moveDown
 global moveLeft
 global moveRight
 global moveQuit
+global turnLeft
+global turnRight
 global upDown
 global leftRight
 upDown = 0
@@ -25,6 +27,8 @@ moveDown = False
 moveLeft = False
 moveRight = False
 moveQuit = False
+turnLeft = False
+turnRight = False
 pygame.init()
 pygame.joystick.init()
 joystick = pygame.joystick.Joystick(0)
@@ -86,6 +90,8 @@ def PygameHandler(events):
 		upDown_2 = 75*upDown_2
 		upDown_2 = int(upDown_2)
 		print(upDown_2)
+		if upDown > upDown_0:
+	    		all_accelerate(Power_a, Power_b, 0.01, upDown, -1)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)	
 		moveUp = True
                 moveDown = False
@@ -96,7 +102,9 @@ def PygameHandler(events):
 		upDown = 75*upDown
 		upDown = int(upDown)
 		print(upDown)
-	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
+		if upDown < upDown_0:
+	    		all_accelerate(Power_a, Power_b, 0.01, upDown, -1
+		all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
                 moveUp = False
                 moveDown = True
             else:
