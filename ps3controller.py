@@ -90,13 +90,13 @@ def PygameHandler(events):
                 leftRight = -leftRight
             # Determine Up / Down values
             if upDown < -0.1:
-	    	if numpy.sign(upDown) != numpy.sign(upDown_0):
+		if numpy.sign(upDown) != numpy.sign(upDown_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 		upDown_2 = abs(upDown)
-		upDown_2 = 75*upDown
-		upDown_2 = int(upDown)
+		upDown_2 = 50*upDown_2
+		upDown_2 = int(upDown_2)
 		print(upDown_2)
-		all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
+	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
 		positiveVelocity = False
 		negativeVelocity = True
 		logging.debug('upDown < -0.1, toggling negative movement')
