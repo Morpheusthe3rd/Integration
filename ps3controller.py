@@ -183,11 +183,11 @@ class Motor: #This class defines the motor direction pins and their assumed posi
 		if decision_bit == 0:
 			IO.output(self.forward_pin, IO.HIGH)
 			IO.output(self.backward_pin, IO.LOW)
-			logging.info('Direction Forward')
+			#logging.info('Direction Forward')
 		elif decision_bit == 1:
 			IO.output(self.forward_pin, IO.LOW)
 			IO.output(self.backward_pin, IO.HIGH)
-			logging.info('Direction Backward')
+			#logging.info('Direction Backward')
 		else: 
 			logging.warning("Exception. Unexpected 'decision_bit' value.")
 class PWM: #This class defines the data and functions surrounding the PWM controls
