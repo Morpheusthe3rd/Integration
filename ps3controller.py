@@ -268,6 +268,7 @@ def main():
 					upDown = 75*upDown
 					upDown = int(upDown)
 					all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
+					logging.debug('pos vel left right')
                         	elif negativeVelocity: #left
                             		Motor3.set_direction(0)
                             		Motor2.set_direction(1)
@@ -277,6 +278,7 @@ def main():
 					upDown_2 = 75*upDown_2
 					upDown_2 = int(upDown_2)
 					all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
+					logging.debug('neg vel left right')
 				else:
 					logging.warning('UNEXPECTED STATE: moveLeftRight active, with neither pos nor neg vel.')
                         elif moveUpDown:
@@ -289,6 +291,7 @@ def main():
 					upDown = 75*upDown
 					upDown = int(upDown)
 					all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
+					logging.debug('pos vel up down')
                         	elif negativeVelocity: #backward
                             		Motor3.set_direction(0)
                             		Motor2.set_direction(0)
@@ -298,6 +301,7 @@ def main():
 					upDown_2 = 75*upDown_2
 					upDown_2 = int(upDown_2)
 					all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
+					logging.debug('neg vel up down')
 				else:
 					logging.warning('UNEXPECTED STATE: moveUpDown active, with neither pos nor neg vel.')
 			elif turnLeftRight:
@@ -310,6 +314,7 @@ def main():
 					upDown = 75*upDown
 					upDown = int(upDown)
 					all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
+					logging.debug('pos vel left right turn')
 				elif negativeVelocity: #turn Left
 					Motor1.set_direction(0)
 					Motor2.set_direction(1)
@@ -319,6 +324,7 @@ def main():
 					upDown_2 = 75*upDown_2
 					upDown_2 = int(upDown_2)
 					all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
+					logging.debug('neg vel left right turn')
 				else:
 					logging.warning('UNEXPECTED STATE: turnLeftRight active, with neither pos nor neg vel.')
 													 
