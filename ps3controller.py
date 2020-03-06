@@ -35,7 +35,9 @@ global positiveVelocity
 global negativeVelocity
 global moveQuit
 global upDown
+global upDown_2
 upDown = 0
+upDown_2 = 0
 hadEvent = True
 moveUpDown = False
 moveLeftRight = False
@@ -101,7 +103,7 @@ def PygameHandler(events):
 		upDown_2 = 50*upDown_2
 		upDown_2 = int(upDown_2)
 		print(upDown_2)
-	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
+	    	
 		positiveVelocity = False
 		negativeVelocity = True
 		logging.debug('upDown < -0.1, toggling negative movement')
@@ -114,7 +116,6 @@ def PygameHandler(events):
 		upDown = 75*upDown
 		upDown = int(upDown)
 		print(upDown)
-		all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
 		positiveVelocity = True
 		negativeVelocity = False
 		logging.debug('upDown > 0.1, toggling positive movement')
@@ -248,6 +249,7 @@ def all_accelerate(PWM1, PWM2, interval, final_duty, direction):
 def main():
         global hadEvent
 	global upDown
+	global upDown_2
 	hadEvent = False
         while(1):
                 try:
@@ -264,11 +266,13 @@ def main():
                             		Motor2.set_direction(0)
                             		Motor4.set_direction(0)
                             		Motor1.set_direction(1)
+					all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
                         	elif negativeVelocity: #left
                             		Motor3.set_direction(0)
                             		Motor2.set_direction(1)
                             		Motor4.set_direction(1)
                             		Motor1.set_direction(0)
+					all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
 				else:
 					logging.warning('UNEXPECTED STATE: moveLeftRight active, with neither pos nor neg vel.')
                         elif moveUpDown:
@@ -276,12 +280,14 @@ def main():
 					Motor3.set_direction(1)
                             		Motor2.set_direction(1)
                             		Motor4.set_direction(1)
-                            		Motor1.set_direction(1)        
+                            		Motor1.set_direction(1)
+					all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
                         	elif negativeVelocity: #backward
                             		Motor3.set_direction(0)
                             		Motor2.set_direction(0)
                             		Motor4.set_direction(0)
                             		Motor1.set_direction(0)
+					all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
 				else:
 					logging.warning('UNEXPECTED STATE: moveUpDown active, with neither pos nor neg vel.')
 			elif turnLeftRight:
@@ -290,11 +296,13 @@ def main():
 					Motor2.set_direction(0)
 					Motor3.set_direction(1)
 					Motor4.set_direction(1)
+					all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
 				elif negativeVelocity: #turn Left
 					Motor1.set_direction(1)
 					Motor2.set_direction(1)
 					Motor3.set_direction(0)
 					Motor4.set_direction(0)
+					all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)
 				else:
 					logging.warning('UNEXPECTED STATE: turnLeftRight active, with neither pos nor neg vel.')
 													 
