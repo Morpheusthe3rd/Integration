@@ -146,7 +146,7 @@ def PygameHandler(events):
 			moveUpDown = False
 			moveLeftRight = True
 			turnLeftRight = False
-		elif joystick.get_button(9): #r2 trigger
+		elif joystick.get_button(12) #triangle
 			#turn left/right
 			logging.debug('Toggled for turning Right and Left')
 			moveUpDown = False
