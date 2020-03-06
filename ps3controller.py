@@ -120,7 +120,7 @@ def PygameHandler(events):
 		leftRight = abs(leftRight)
 		leftRight = 75*leftRight
 		leftRight = int(leftRight)
-		print(leftRight_2)
+		print(leftRight)
 	    	all_accelerate(Power_a, Power_b, 0.01, leftRight, 1)	
                 moveLeft = False
                 moveRight = True
