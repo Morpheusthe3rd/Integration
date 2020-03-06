@@ -136,7 +136,7 @@ def PygameHandler(events):
 	elif event.type == pygame.JOYBUTTONDOWN:
 		Xbutton= joystick.get_button(14)
 		circlebutton = joystick.get_button(13)
-		triangle = joystick.get_button(12)
+		triangle = joystick.get_button(15)
 		if Xbutton: #x button
 			#move forward/back
 			logging.debug('Toggled for moving Forwards and Backwards')
