@@ -268,7 +268,7 @@ def main():
                             		Motor4.set_direction(1)
                             		Motor1.set_direction(0)
 				else:
-					loggin.WARNING('UNEXPECTED STATE: moveLeftRight active, with neither pos nor neg vel.')
+					logging.WARNING('UNEXPECTED STATE: moveLeftRight active, with neither pos nor neg vel.')
                         elif moveUpDown:
                         	if positiveVelocity: #forward
 					Motor3.set_direction(1)
@@ -281,7 +281,7 @@ def main():
                             		Motor4.set_direction(0)
                             		Motor1.set_direction(0)
 				else:
-					loggin.WARNING('UNEXPECTED STATE: moveUpDown active, with neither pos nor neg vel.')
+					logging.WARNING('UNEXPECTED STATE: moveUpDown active, with neither pos nor neg vel.')
 			elif turnLeftRight:
 				if positiveVelocity: #turn Right
 					Motor1.set_direction(0)
@@ -294,7 +294,7 @@ def main():
 					Motor3.set_direction(0)
 					Motor4.set_direction(0)
 				else:
-					loggin.WARNING('UNEXPECTED STATE: turnLeftRight active, with neither pos nor neg vel.')
+					logging.WARNING('UNEXPECTED STATE: turnLeftRight active, with neither pos nor neg vel.')
 													 
                     # Wait for the interval period
                     time.sleep(0.01)
