@@ -20,6 +20,11 @@ logging.info('		math')
 logging.info('		sys')
 logging.info('		numpy')
 
+IO.setwarnings(False)
+IO.setmode(IO.BCM)
+logging.info('IO.setwarnings: False')
+logging.info('IO.setmode: IO.BCM')
+
 #From Online
 # Setup pygame and key states
 global hadEvent
@@ -157,11 +162,6 @@ def PygameHandler(events):
 #which comes from the App
 
 #For now I will assume that the keyboard will be controlling the movement, using W, A, S, D
-
-IO.setwarnings(False)
-IO.setmode(IO.BCM)
-logging.info('IO.setwarnings: False')
-logging.info('IO.setmode: IO.BCM')
 
 class Motor: #This class defines the motor direction pins and their assumed position on the robot. 
 	def __init__(self, PIN_1, PIN_2):
