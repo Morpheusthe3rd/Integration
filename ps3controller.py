@@ -66,6 +66,8 @@ def PygameHandler(events):
     global moveUpDown
     global moveLeftRight
     global turnLeftRight
+    global positiveVelocity
+    global negativeVelocity
     global moveQuit
     global upDown
     # Handle each event individually
