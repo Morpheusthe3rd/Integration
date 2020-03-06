@@ -301,7 +301,7 @@ def main():
                 except KeyboardInterrupt:
                         logging.warning('KEYBOARD INTERRUPT. PROGRAM EXITING.')
                         sys.exit()
-						io.cleanup()
+			io.cleanup()
                         break
                         
 
