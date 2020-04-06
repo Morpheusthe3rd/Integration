@@ -15,14 +15,20 @@ global moveDown
 global moveLeft
 global moveRight
 global moveQuit
+global turnLeft
+global turnRight
 global upDown
+global leftRight
 upDown = 0
+leftRight = 0
 hadEvent = True
 moveUp = False
 moveDown = False
 moveLeft = False
 moveRight = False
 moveQuit = False
+turnLeft = False
+turnRight = False
 pygame.init()
 pygame.joystick.init()
 joystick = pygame.joystick.Joystick(0)
@@ -47,6 +53,7 @@ def PygameHandler(events):
     global moveRight
     global moveQuit
     global upDown
+    global leftRight
     # Handle each event individually
     for event in events:
         if event.type == pygame.QUIT:
@@ -67,6 +74,7 @@ def PygameHandler(events):
             # A joystick has been moved, read axis positions (-1 to +1)
             hadEvent = True
 	    upDown_0 = upDown
+	    leftRight_0 = leftRight
             upDown = joystick.get_axis(axisUpDown)
             leftRight = joystick.get_axis(axisLeftRight)
             # Invert any axes which are incorrect
@@ -79,9 +87,11 @@ def PygameHandler(events):
 		if numpy.sign(upDown) != numpy.sign(upDown_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 		upDown_2 = abs(upDown)
-		upDown_2 = 50*upDown_2
+		upDown_2 = 75*upDown_2
 		upDown_2 = int(upDown_2)
 		print(upDown_2)
+		if upDown > upDown_0:
+	    		all_accelerate(Power_a, Power_b, 0.01, upDown, -1)
 	    	all_accelerate(Power_a, Power_b, 0.01, upDown_2, 1)	
 		moveUp = True
                 moveDown = False
@@ -89,10 +99,12 @@ def PygameHandler(events):
 		if numpy.sign(upDown) != numpy.sign(upDown_0):
 			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
 		upDown = abs(upDown)
-		upDown = 50*upDown
+		upDown = 75*upDown
 		upDown = int(upDown)
 		print(upDown)
-	    	all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
+		if upDown < upDown_0:
+	    		all_accelerate(Power_a, Power_b, 0.01, upDown, -1
+		all_accelerate(Power_a, Power_b, 0.01, upDown, 1)
                 moveUp = False
                 moveDown = True
             else:
@@ -101,9 +113,23 @@ def PygameHandler(events):
 		all_accelerate(Power_a, Power_b, 0.01, 0, -1)
             # Determine Left / Right values
             if leftRight < -0.1:
+		if numpy.sign(leftRight) != numpy.sign(leftRight_0):
+			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
+		leftRight_2 = abs(leftRight)
+		leftRight_2 = 75*leftRight_2
+		leftRight_2 = int(leftRight_2)
+		print(leftRight_2)
+	    	all_accelerate(Power_a, Power_b, 0.01, leftRight_2, 1)		
                 moveLeft = True
                 moveRight = False
-            elif leftRight > 0.1:
+            elif leftRight > 0.1 :
+		if numpy.sign(leftRight) != numpy.sign(leftRight_0):
+			all_accelerate(Power_a, Power_b, 0.01, 0, -1)
+		leftRight = abs(leftRight)
+		leftRight = 75*leftRight
+		leftRight = int(leftRight)
+		print(leftRight)
+	    	all_accelerate(Power_a, Power_b, 0.01, leftRight, 1)	
                 moveLeft = False
                 moveRight = True
             else:
